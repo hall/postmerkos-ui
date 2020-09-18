@@ -1,0 +1,11 @@
+{
+    "pvid": 1,
+    "vlans": [1],
+    "tagged": true,
+    "stp": true,
+    "lacp": false,
+    "poe": {
+        "enabled": false,
+        "mode": "off"
+    }
+}
