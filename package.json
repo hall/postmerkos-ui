@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "freeraki-ui",
+  "name": "freeraki",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -30,6 +30,7 @@
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "preact": "^10.1.0",
-    "preact-render-to-string": "^5.1.2"
+    "preact-render-to-string": "^5.1.2",
+    "react-modal": "^3.14.3"
   }
 }

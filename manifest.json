@@ -1,6 +1,6 @@
 {
-  "name": "freeraki-ui",
-  "short_name": "freeraki-ui",
+  "name": "freeraki",
+  "short_name": "freeraki",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
