@@ -1,111 +1,82 @@
 import './style';
 import { Component } from 'preact';
-import SHA256 from 'js-sha256';
-import axios from 'axios';
-import cloneDeep from 'lodash.clonedeep';
-import get from 'lodash.get';
+import { set, get, cloneDeep } from 'lodash';
 import PortManagement from './ports';
-import Login from './login'
-import Credentials from './credentials'
-import def_port from './defaults/port'
+import ReactModal from 'react-modal';
+import axios from 'axios';
 
-const def_config = {
-	credentials: {
-		username: 'admin',
-		password: SHA256('admin')
-	},
-	ports: {
-		'1': cloneDeep(def_port)
+const fetchConfig = () => {
+	if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+		return axios.get('/test/24.json')
+	} else {
+		return axios.get('/switch.json')
 	}
-};
-
-const fetch = '/admin/switch.json';
-const store = '/admin/save';
-
-const getConfig = () => {
-	return axios.get(fetch);
-	/*return {
-		"credentials": {
-			"username": "login",
-			"password": SHA256('test')
-		},
-		"ports": {}
-	}; // Use this for testing the login */
 }
 
 const storeConfig = (config) => {
-	axios.post(store, config)
+	axios.put('/switch.json', config)
 }
 
-
-const previewConfig = (config) => {
-	const preview = cloneDeep(config)
-	const pass = get(preview, 'credentials.password', '')
-	preview.credentials.password = pass.substring(0, Math.min(pass.length, 3)) + '-HIDDEN';
-	return preview;
-};
-
 export default class App extends Component {
-	async validateUserLogin(username, password) {
-		try {
-			const incoming = await getConfig();
-			if (get(incoming, 'credentials.username') == username ||
-				get(incoming, 'credentials.password') == password) {
-				this.setState({ config: incoming});
-			}
-		} catch (e) {
-			this.setState({ config: def_config });
-		}
+	state = {
+		showPreview: false,
 	}
-	
+
+	updatePort = (portNumber, path, value) => {
+		if (path == "vlans") {
+			let value = value.split(',').map(x => parseInt(x));
+		}
+
+		let config = cloneDeep(this.state.config)
+		let index = get(config, "ports").findIndex(p => p.port == portNumber)
+		config["ports"][index] = set(config.ports[index], path, value)
+		// console.log(`updating port ${portNumber} at ${path} with ${value}`)
+		this.setState({ config });
+	}
 
 	async componentDidMount() {
-		await this.validateUserLogin();
+		const incoming = (await fetchConfig()).data;
+		this.setState({ config: incoming });
 	}
+
 	render() {
+		ReactModal.setAppElement('html');
 		const config = get(this, 'state.config');
 		return (
 			<div>
-				<h1>Freeraki v0.1</h1>
-				{ !config && 
-						<Login validateUserLogin={(u, p) => this.validateUserLogin(u, p)}/> }
-				{ config && 
-					<PortManagement 
-						config={config}
-						addPort={() => { 
-							let ports = get(config, 'ports');
-							let length = Object.keys(ports).length;
-							ports[length + 1] = cloneDeep(def_port);
-							config.ports = ports;
-							this.setState({ config: config });
-						}}
-						deletePort={() => {
-							let ports = get(config, 'ports');
-							let length = Object.keys(ports).length;
-							delete ports[length];
-							config.ports = ports;
-							this.setState({ config: config });
-						}}
-						updatePort={(ports) => {
-							config.ports = ports;
-							this.setState({ config: config });
-						}}
-						saveChanges={() => {
-							storeConfig(config);
-						}} /> }
-				{ config && 
-					<Credentials config={config} updateCredentials={async (creds) =>{
-						config.credentials = creds;
-						this.setState({ config: config });
-						await storeConfig(config);
-					}}/>}
+				<div style="display: flex; flex-wrap: wrap">
+					<h1>Freeraki v0.2</h1>
 
-				{ config && <div>
-					<h2>Preview</h2>
-					<textarea readOnly="true" rows="20">
-						{ JSON.stringify(previewConfig(config), null, 2 )}
-					</textarea>
-				</div> }
+					<div style="display: flex; margin-left: auto">
+						{config && <div>
+							<button onClick={() => storeConfig(config)}>
+								<svg id="i-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+									<path d="M9 22 C0 23 1 12 9 13 6 2 23 2 22 10 32 7 32 23 23 22 M11 18 L16 14 21 18 M16 14 L16 29" />
+								</svg>
+							</button>
+							<button onClick={() => this.setState({ showPreview: true })}>
+								<svg id="i-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+									<circle cx="17" cy="15" r="1" />
+									<circle cx="16" cy="16" r="6" />
+									<path d="M2 16 C2 16 7 6 16 6 25 6 30 16 30 16 30 16 25 26 16 26 7 26 2 16 2 16 Z" />
+								</svg>
+							</button>
+							<ReactModal isOpen={this.state.showPreview}
+								shouldCloseOnOverlayClick={true}
+								onRequestClose={() => this.setState({ showPreview: false })}
+							>
+								<textarea readOnly="true" style="resize: none; height: calc(100% - 12px)">
+									{JSON.stringify(config, null, 2)}
+								</textarea>
+							</ReactModal>
+						</div>}
+					</div>
+				</div>
+				<div>{get(this.state.config, "device")}</div>
+				<div>{get(this.state.config, "date")}</div>
+				<div>{get(this.state.config, "temperature")}</div>
+				{config &&
+					<PortManagement config={config} updatePort={this.updatePort} />}
 			</div>
 		);
 	}
