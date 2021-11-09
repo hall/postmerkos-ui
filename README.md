@@ -2,6 +2,8 @@
 
 Freeraki is a basic UI for the [meraki-builder](https://github.com/halmartin/meraki-builder) firmware.
 
+![screenshot](./screenshot.png)
+
 ## Installation
 
 Grab a release from the releases page and unzip it onto your switch.
