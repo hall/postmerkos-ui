@@ -1,19 +1,34 @@
-# Freeraki-ui
-Freeraki-ui is a basic UI for the meraki-builder repo.
+# Freeraki
+
+Freeraki is a basic UI for the [meraki-builder](https://github.com/halmartin/meraki-builder) firmware.
 
 ## Installation
-Grab a release from the releases page and unzip it into your switch.
+
+Grab a release from the releases page and unzip it onto your switch.
 
 ## Development
-Running this locally is easy
-```bash
-npm i
-npm run dev
-```
-Navigate the localhost:8080
 
-## Known Issues
-Due to the low amount of RAM available on device, a lot of the password validation is done client-side. Hashing is used consistently but a malicious user can still override your configuration.
+Install dependencies with
+
+    npm i
+
+For live-reloading (without auth or persistent config):
+
+    npm run dev
+
+Navigate to http://localhost:8080
+
+Or, build the static site with
+
+    npm run build
+
+then serve with `lighttpd`
+
+    ./serve.sh
+
+The credentials are `admin`:`admin`.
+
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
