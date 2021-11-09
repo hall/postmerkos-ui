@@ -13,10 +13,6 @@ const fetchConfig = () => {
 	}
 }
 
-const storeConfig = (config) => {
-	axios.put('/switch.json', config)
-}
-
 export default class App extends Component {
 	state = {
 		showPreview: false,
@@ -49,7 +45,11 @@ export default class App extends Component {
 
 					<div style="display: flex; margin-left: auto">
 						{config && <div>
-							<button onClick={() => storeConfig(config)}>
+							<button onClick={() => {
+								config["date"] = new Date().toISOString();
+								this.setState({ config })
+								axios.put('/switch.json', config)
+							}}>
 								<svg id="i-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
 									<path d="M9 22 C0 23 1 12 9 13 6 2 23 2 22 10 32 7 32 23 23 22 M11 18 L16 14 21 18 M16 14 L16 29" />
 								</svg>
