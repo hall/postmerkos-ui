@@ -1,0 +1,15 @@
+#!/bin/sh
+echo "Content-type: application/json"
+echo "" # <- necessary; probably required by the rfc
+
+CONFIG=/etc/switch.json
+
+
+case "$REQUEST_METHOD" in
+  GET)
+    cat $CONFIG
+  ;;
+  POST)
+    echo $(cat) | jq > $CONFIG
+  ;;
+esac

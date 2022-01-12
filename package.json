@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --prerender && zip -r latest.zip build",
+    "build": "preact build --prerender && cp -r ./assets/* ./build/ && zip -r latest.zip build",
     "analyze": "preact build --analyze -p",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",

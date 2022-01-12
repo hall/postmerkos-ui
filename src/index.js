@@ -9,7 +9,7 @@ const fetchConfig = () => {
 	if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 		return axios.get('/test/24.json')
 	} else {
-		return axios.get('/switch.json')
+		return axios.get('/cgi-bin/config')
 	}
 }
 
