@@ -8,7 +8,12 @@ Freeraki is a basic UI for the [meraki-builder](https://github.com/halmartin/mer
 
 Until there are releases available, build the static site with
 
+    npm i
     npm run build
+
+or, using docker,
+
+    docker run -it -v $PWD:/app -w /app --entrypoint sh node:14-alpine -c "npm i && npm run build"
 
 then copy the newly-created `./build` directory to your switch:
 

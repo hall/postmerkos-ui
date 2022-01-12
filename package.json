@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --prerender && cp -r ./assets/* ./build/ && zip -r latest.zip build",
+    "build": "preact build --prerender && cp -r ./assets/* ./build/",
+    "zip": "zip -r latest.zip build",
     "analyze": "preact build --analyze -p",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",
@@ -32,5 +33,8 @@
     "preact": "^10.1.0",
     "preact-render-to-string": "^5.1.2",
     "react-modal": "^3.14.3"
+  },
+  "engines": {
+    "node": ">=0.10.3 <15"
   }
 }
