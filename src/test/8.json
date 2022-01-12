@@ -2,9 +2,8 @@
     "device": "meraki_MS220-8P",
     "date": "2020-12-05T13:24:05Z",
     "temperature": "43.9 C",
-    "ports": [
-        {
-            "port": 1,
+    "ports": {
+        "1": {
             "link": {
                 "established": true,
                 "speed": 1000
@@ -21,8 +20,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 2,
+        "2": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -39,8 +37,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 3,
+        "3": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -57,8 +54,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 4,
+        "4": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -75,8 +71,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 5,
+        "5": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -93,8 +88,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 6,
+        "6": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -111,8 +105,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 7,
+        "7": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -129,8 +122,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 8,
+        "8": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -147,8 +139,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 9,
+        "9": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -165,8 +156,7 @@
                 "power": 0
             }
         },
-        {
-            "port": 10,
+        "10": {
             "link": {
                 "established": false,
                 "speed": 0
@@ -183,5 +173,5 @@
                 "power": 0
             }
         }
-    ]
+    }
 }

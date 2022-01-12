@@ -28,18 +28,18 @@ export default class PortManagement extends Component {
 		super(props)
 		let config = get(this, "props.config")
 
-		let count = get(config, "ports").length
+		let count = Object.keys(get(config, "ports")).length
 		// assume 2 rows of ports, for 10+ ports
 		let rows = count > 10 ? 2 : 1;
 		// assume 4 spf ports, if 10+ total ports
 		let spf = count > 10 ? 4 : 2;
 		// assume ports are grouped into counts of 12
-		let groups = Math.floor(get(config, "ports").length / 12);
+		let groups = Math.floor(count / 12);
 
 		this.state["spfCount"] = spf
 		this.setState({
 			style: {
-				gridTemplateColumns: `repeat(${((get(config, "ports").length - spf) / rows) + (groups > 1 ? groups - 1 : groups)}, 1fr)`,
+				gridTemplateColumns: `repeat(${((count - spf) / rows) + (groups > 1 ? groups : groups)}, 1fr)`,
 			}
 		})
 	}
@@ -47,12 +47,13 @@ export default class PortManagement extends Component {
 	render() {
 		let config = get(this, "props.config")
 		let ports = get(config, "ports")
+		let count = Object.keys(ports).length
 
 		const compare = (a, b) => {
-			let firstSpf = ports.length - this.state.spfCount
-			if (a.port > firstSpf || b.port > firstSpf)
-				return a.port - b.port
-			return b.port % 2 - a.port % 2
+			let firstSpf = count - this.state.spfCount
+			if (a > firstSpf || b > firstSpf)
+				return a - b
+			return b % 2 - a % 2
 		}
 
 		return (
@@ -73,18 +74,18 @@ export default class PortManagement extends Component {
 						position: "relative",
 					}, this.state.style)}>
 						{
-							ports.sort(compare).map(port => {
+							Object.keys(ports).sort(compare).map(port => {
 								let p = <div
-									onClick={() => this.setState({ selectedPort: port.port })}
+									onClick={() => this.setState({ selectedPort: port })}
 									style={{
 										display: 'flex',
-										borderColor: this.state.selectedPort == port.port ? 'black' : 'lightgray',
+										borderColor: this.state.selectedPort == port ? 'black' : 'lightgray',
 										borderStyle: 'solid',
 										borderWidth: '2px',
 										borderSpacing: '2px',
 										borderRadius: '5px',
-										backgroundColor: this.getColor(port),
-										color: this.getColor(port).startsWith("light") ? "black" : "inherit",
+										backgroundColor: this.getColor(ports[port]),
+										color: this.getColor(ports[port]).startsWith("light") ? "black" : "inherit",
 										width: '3rem',
 										height: '3rem',
 										alignItems: "center",
@@ -99,7 +100,7 @@ export default class PortManagement extends Component {
 										color: "blue",
 										marginTop: "0em",
 										marginLeft: "0.1em",
-										display: get(port, "lacp") ? "initial" : "none",
+										display: get(ports[port], "lacp") ? "initial" : "none",
 									}}>&bull;</span>
 									<span style={{
 										position: "absolute",
@@ -108,7 +109,7 @@ export default class PortManagement extends Component {
 										color: "red",
 										marginTop: "0.5em",
 										marginLeft: "0.1em",
-										display: get(port, "stp") ? "initial" : "none",
+										display: get(ports[port], "stp") ? "initial" : "none",
 									}}>&bull;</span>
 									<span style={{
 										position: "absolute",
@@ -118,18 +119,18 @@ export default class PortManagement extends Component {
 										color: "green",
 										marginTop: "0.5em",
 										marginRight: "0.3em",
-										display: get(port, "poe.enabled") ? "initial" : "none",
-									}}>{get(port, "poe.mode")?.substr(get(port, "poe.mode").length - 2)}</span>
-									{port.port}<span style={{
+										display: get(ports[port], "poe.enabled") ? "initial" : "none",
+									}}>{get(ports[port], "poe.standard")?.substring(5)}</span>
+									{port}<span style={{
 										position: "absolute",
 										fontSize: "0.6em",
 										bottom: "0",
 										right: "0",
 										padding: "3px 3px",
-									}}>{get(port, "vlan.pvid")}</span>
+									}}>{get(ports[port], "vlan.pvid")}</span>
 								</div>
-								let idx = port.port % 12
-								if ((idx == 0 || idx == 11) && ports.length - port.port > 12) {
+								let idx = port % 12
+								if ((idx == 0 || idx == 11)) {
 									return [p, <div style={{ padding: "1rem" }}></div>]
 								}
 								return p
@@ -138,7 +139,7 @@ export default class PortManagement extends Component {
 					</div>
 				</div>
 				<Port
-					port={ports[ports.findIndex(e => e.port == this.state.selectedPort)]}
+					port={ports[this.state.selectedPort]}
 					number={this.state.selectedPort}
 					updatePort={this.props.updatePort}
 				/>
