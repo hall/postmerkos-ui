@@ -67,23 +67,27 @@ export default class Port extends Component {
 								updatePort('stp', !stp)
 							} /><label for="stp"> STP</label>
 						</div>
-						<input id="poe" type="checkbox" value={poeEnabled} defaultChecked={poeEnabled} onClick={e => {
-							if (get(port, "poe.mode") == undefined) {
-								updatePort('poe', { "enabled": !poeEnabled, "mode": "802.3af" })
-							} else {
-								updatePort('poe.enabled', !poeEnabled)
-							}
+						{port.poe &&
+							<div>
+								<input id="poe" type="checkbox" value={poeEnabled} defaultChecked={poeEnabled} onClick={e => {
+									if (get(port, "poe.mode") == undefined) {
+										updatePort('poe', { "enabled": !poeEnabled, "mode": "802.3af" })
+									} else {
+										updatePort('poe.enabled', !poeEnabled)
+									}
+								}
+								} /><label for="poe"> PoE</label>
+								<div style={{ marginTop: "0.5rem" }}>
+									{/* <label for="poeMode">Mode</label> */}
+									<select name="poeMode" value={get(port, "poe.mode")} onChange={e =>
+										updatePort('poe.mode', e.target.value)
+									}>
+										<option value="802.3af">802.3af</option>
+										<option value="802.3at">802.3at</option>
+									</select>
+								</div>
+							</div>
 						}
-						} /><label for="poe"> PoE</label>
-						<div style={{ marginTop: "0.5rem" }}>
-							{/* <label for="poeMode">Mode</label> */}
-							<select name="poeMode" value={get(port, "poe.mode")} onChange={e =>
-								updatePort('poe.mode', e.target.value)
-							}>
-								<option value="802.3af">802.3af</option>
-								<option value="802.3at">802.3at</option>
-							</select>
-						</div>
 					</div>
 
 				</div>
