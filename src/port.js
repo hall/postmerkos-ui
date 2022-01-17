@@ -30,10 +30,10 @@ export default class Port extends Component {
 								<td>Speed</td>
 								<td>{get(port, "link.speed")} Mbps</td>
 							</tr>
-							<tr>
+							{port.poe && <tr>
 								<td>Power</td>
 								<td>{get(port, "poe.power", "-")} W</td>
-							</tr>
+							</tr>}
 						</table>
 					</div>
 
