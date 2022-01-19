@@ -8,7 +8,7 @@ export default class Port extends Component {
 			borderStyle: 'solid',
 			borderWidth: '2px',
 			borderSpacing: '2px',
-			borderColor: 'black',
+			borderColor: 'grey',
 			borderRadius: '5px',
 			opacity: get(port, "enabled", true) ? "1" : "0.5",
 			width: '3rem',
