@@ -5,23 +5,10 @@ import get from 'lodash.get';
 import { merge } from 'lodash';
 
 
-export default class PortManagement extends Component {
+export default class Ports extends Component {
 	state = {
 		selectedPort: 1,
 		spfCount: 0,
-	}
-
-	getColor(port) {
-		if (!get(port, "enabled")) {
-			return "lightgray"
-		}
-		// if (get(port, "poe.enabled")) {
-		// 	return "lightgreen"
-		// }
-		if (get(port, "link.established")) {
-			return "lightyellow"
-		}
-		return "initial"
 	}
 
 	constructor(props) {
@@ -75,60 +62,8 @@ export default class PortManagement extends Component {
 					}, this.state.style)}>
 						{
 							Object.keys(ports).sort(compare).map(port => {
-								let p = <div
-									onClick={() => this.setState({ selectedPort: port })}
-									style={{
-										display: 'flex',
-										borderColor: this.state.selectedPort == port ? 'black' : 'lightgray',
-										borderStyle: 'solid',
-										borderWidth: '2px',
-										borderSpacing: '2px',
-										borderRadius: '5px',
-										backgroundColor: this.getColor(ports[port]),
-										color: this.getColor(ports[port]).startsWith("light") ? "black" : "inherit",
-										width: '3rem',
-										height: '3rem',
-										alignItems: "center",
-										justifyContent: "center",
-										cursor: "pointer",
-										position: "relative",
-									}}>
-									<span style={{
-										position: "absolute",
-										left: "0",
-										top: "0",
-										color: "blue",
-										marginTop: "0em",
-										marginLeft: "0.1em",
-										display: get(ports[port], "lacp") ? "initial" : "none",
-									}}>&bull;</span>
-									<span style={{
-										position: "absolute",
-										left: "0",
-										top: "0",
-										color: "red",
-										marginTop: "0.5em",
-										marginLeft: "0.1em",
-										display: get(ports[port], "stp") ? "initial" : "none",
-									}}>&bull;</span>
-									<span style={{
-										position: "absolute",
-										right: "0",
-										top: "0",
-										fontSize: "0.5em",
-										color: "green",
-										marginTop: "0.5em",
-										marginRight: "0.3em",
-										display: get(ports[port], "poe.enabled") ? "initial" : "none",
-									}}>{get(ports[port], "poe.standard")?.substring(5)}</span>
-									{port}<span style={{
-										position: "absolute",
-										fontSize: "0.6em",
-										bottom: "0",
-										right: "0",
-										padding: "3px 3px",
-									}}>{get(ports[port], "vlan.pvid")}</span>
-								</div>
+								let p =
+									<Port number={port} port={ports[port]} />
 								let idx = port % 12
 								if ((idx == 0 || idx == 11)) {
 									return [p, <div style={{ padding: "1rem" }}></div>]
@@ -138,11 +73,6 @@ export default class PortManagement extends Component {
 						}
 					</div>
 				</div>
-				<Port
-					port={ports[this.state.selectedPort]}
-					number={this.state.selectedPort}
-					updatePort={this.props.updatePort}
-				/>
 			</div >
 		);
 	}

@@ -75,16 +75,18 @@
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 	line-height: 1.4;
   
-	max-width: 800px;
-	margin: 20px auto;
-	padding: 0 10px;
-  
 	color: var(--text-main);
 	background: var(--background-body);
   
 	text-rendering: optimizeLegibility;
   }
   
+  #heading {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 0 10px;
+
+  }
   button, input, textarea {
 	transition: background-color var(--animation-duration) linear,
 				border-color var(--animation-duration) linear,
@@ -570,4 +572,19 @@
 	color: var(--text-muted);
   }
   
-  /*# sourceMappingURL=dark.css.map */
+/*# sourceMappingURL=dark.css.map */
+tr:nth-child(even) {
+  background-color: rgba(128,128,128,0.2);
+}
+th {
+	border-bottom: 1px grey solid;
+	margin-bottom: 2px;
+	text-align: center;
+}
+td {
+	padding: 5px 10px;
+}
+
+table {
+	width: initial;
+}
