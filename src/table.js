@@ -3,15 +3,28 @@ import { get } from 'lodash';
 
 export default class Legend extends Component {
 
+    // diffStyle returns the style of PORT number if there is a diff in FIELD
+    diffStyle(port, field) {
+        let style = {}
+        if (get(get(this, 'props.diff'), `ports.${port}.${field}`) != null) {
+            style = {
+                backgroundColor: "lightcoral",
+                border: "1px black solid",
+            }
+        }
+        return style
+    }
+
     render() {
         let ports = get(this, 'props.ports');
         let updatePort = get(this, 'props.updatePort');
 
         return (
             <table style={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                // justifyContent: "center",
+                margin: "0 auto",
+                paddingBottom: "20px",
+                width: "initial",
+
             }}>
                 <tr>
                     <th>port</th>
@@ -24,7 +37,7 @@ export default class Legend extends Component {
                     <th>lacp</th>
                     <th>stp</th>
                     <th>poe</th>
-                    <th>mode</th>
+                    <th>standard</th>
                 </tr>
                 {Object.keys(ports).map(port => {
                     let p = ports[port]
@@ -34,57 +47,63 @@ export default class Legend extends Component {
                     let poeEnabled = get(p, "poe.enabled")
                     return (
                         <tr>
-                            <td>
-                                {port}
+                            <td>{port}</td>
+
+                            <td style={this.diffStyle(port, "enabled")} >
+                                <input
+                                    id="enabled"
+                                    type="checkbox"
+                                    value={enabled}
+                                    defaultChecked={enabled}
+                                    onChange={() => updatePort(port, 'enabled', !enabled)}
+                                />
                             </td>
-                            <td>
-                                <input id="enabled" type="checkbox" value={enabled} defaultChecked={enabled} onChange={() =>
-                                    updatePort(port, 'enabled', !enabled)
-                                } />
-                            </td>
-                            <td>
-                                {get(p, "link.established").toString()}
-                            </td>
-                            <td>
-                                {get(p, "link.speed")}
-                            </td>
-                            {p.poe && <td>
-                                {get(p, "poe.power")}
-                            </td>}
-                            <td>
+
+                            <td>{get(p, "link.established").toString()}</td>
+
+                            <td>{get(p, "link.speed")}</td>
+
+                            {p.poe && <td>{get(p, "poe.power")}</td>}
+
+                            <td style={this.diffStyle(port, "vlan.pvid")} >
                                 <input name="pvid" type="number" min="1" max="4094" value={get(p, 'vlan.pvid')}
                                     onChange={e =>
-                                        updatePort(port, 'vlan.pvid', e.target.value)
+                                        updatePort(port, 'vlan.pvid', Number(e.target.value))
                                     }></input>
                             </td>
-                            <td>
+
+                            <td style={this.diffStyle(port, "vlan.allowed")} >
                                 <input name="vlans" value={get(p, 'vlan.allowed')}
                                     onChange={e =>
                                         updatePort(port, 'vlan.allowed', e.target.value)
                                     }></input>
                             </td>
-                            <td>
+
+                            <td style={this.diffStyle(port, "lacp")} >
                                 <input id="lacp" type="checkbox" value={lacp} defaultChecked={lacp} onChange={() =>
                                     updatePort(port, 'lacp', !lacp)
                                 } />
                             </td>
-                            <td>
+
+                            <td style={this.diffStyle(port, "stp")} >
                                 <input id="stp" type="checkbox" value={stp} defaultChecked={stp} onChange={() =>
                                     updatePort(port, 'stp', !stp)
                                 } />
                             </td>
-                            <td>
+
+                            <td style={this.diffStyle(port, "poe.enabled")} >
                                 <input id="poe" type="checkbox" value={poeEnabled} defaultChecked={poeEnabled} onClick={e => {
-                                    if (get(port, "poe.mode") == undefined) {
-                                        updatePort(port, 'poe', { "enabled": !poeEnabled, "mode": "802.3af" })
+                                    if (get(port, "poe.standard") == undefined) {
+                                        updatePort(port, 'poe', { "enabled": !poeEnabled, "standard": "802.3af" })
                                     } else {
                                         updatePort(port, 'poe.enabled', !poeEnabled)
                                     }
                                 }} />
                             </td>
-                            <td>
-                                <select name="poeMode" value={get(p, "poe.mode")} onChange={e =>
-                                    updatePort(port, 'poe.mode', e.target.value)
+
+                            <td style={this.diffStyle(port, "poe.standard")} >
+                                <select name="poeStandard" value={get(p, "poe.standard")} onChange={e =>
+                                    updatePort(port, 'poe.standard', e.target.value)
                                 }>
                                     <option value="802.3af">802.3af</option>
                                     <option value="802.3at">802.3at</option>
