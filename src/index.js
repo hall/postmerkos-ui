@@ -1,9 +1,11 @@
 import './style';
 import { Component } from 'preact';
+import { useState } from "react";
 import { set, get, cloneDeep } from 'lodash';
 import Ports from './ports';
 import Legend from './legend';
 import Table from './table';
+import Button from './button';
 import ReactModal from 'react-modal';
 import axios from 'axios';
 
@@ -12,8 +14,8 @@ let endpoint = "/cgi-bin/config";
 // a local file to test port layouts in dev
 let testFile = "/test/48.json";
 
-// fetchConfig returns the latest config file
-const fetchConfig = () => {
+// getConfig returns the latest config file
+const getConfig = () => {
 	if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 		endpoint = testFile;
 	}
@@ -23,6 +25,40 @@ const fetchConfig = () => {
 export default class App extends Component {
 	state = {
 		showPreview: false,
+	}
+	uploadButton = () => {
+		const [isButtonLoading, setIsButtonLoading] = useState(false);
+		let config = get(this, "state.config")
+
+		return (
+			<Button
+				onClick={() => {
+					setIsButtonLoading(true);
+
+					config["date"] = new Date().toISOString();
+					this.setState({ config })
+					if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
+						axios.post(endpoint, JSON.stringify(config, null, 4))
+							.then(resp => {
+								setIsButtonLoading(false)
+								this.setState({ configOnDisk: config, diff: {} });
+							}
+							);
+					} else {
+						setTimeout(() => {
+							setIsButtonLoading(false);
+							this.setState({ configOnDisk: config, diff: {} });
+						}, 1000);
+
+					}
+				}}
+				isLoading={isButtonLoading}
+			>
+				<svg id="i-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+					<path d="M9 22 C0 23 1 12 9 13 6 2 23 2 22 10 32 7 32 23 23 22 M11 18 L16 14 21 18 M16 14 L16 29" />
+				</svg>
+			</Button>
+		);
 	}
 
 	// updatePort updates the config of portNumber at path with value
@@ -37,7 +73,7 @@ export default class App extends Component {
 	}
 
 	async componentDidMount() {
-		const incoming = (await fetchConfig()).data;
+		const incoming = (await getConfig()).data;
 		this.setState({ config: incoming, configOnDisk: incoming, diff: {} });
 	}
 
@@ -58,26 +94,23 @@ export default class App extends Component {
 		return (
 			<div>
 				<div id="heading">
-					<div style="display: flex; flex-wrap: wrap">
-						<h1>Freeraki v0.2</h1>
+					<div style={{
+						display: "flex",
+						flexWrap: "wrap"
+					}}>
+						<diw>
+							<h1 style={{ marginBottom: "-0.5rem" }}>Freeraki</h1>
+							<span style={{ fontSize: "0.9rem" }}>
+								{/* VERSION */} {/* NOTE: leave this comment as it gets replaced during build */}
+							</span>
+						</diw>
 
-						<div style="display: flex; margin-left: auto">
-							{config && <div>
+						<div style={{ display: "flex", marginLeft: "auto" }}>
+							{config && <div id="buttons">
+								{this.uploadButton()}
 
-								<button onClick={() => {
-									config["date"] = new Date().toISOString();
-									this.setState({ config })
-									if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
-										axios.post(endpoint, JSON.stringify(config, null, 4));
-									}
-									this.setState({ configOnDisk: config, diff: {} });
-								}}>
-									<svg id="i-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-										<path d="M9 22 C0 23 1 12 9 13 6 2 23 2 22 10 32 7 32 23 23 22 M11 18 L16 14 21 18 M16 14 L16 29" />
-									</svg>
-								</button>
-
-								<button onClick={() => this.setState({ showPreview: true })}>
+								<button
+									onClick={() => this.setState({ showPreview: true })}>
 									<svg id="i-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
 										<circle cx="17" cy="15" r="1" />
 										<circle cx="16" cy="16" r="6" />

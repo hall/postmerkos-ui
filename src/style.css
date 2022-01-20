@@ -586,3 +586,19 @@ td {
 	padding: 5px 10px;
 	text-align: center;
 }
+
+
+#buttons {
+	height: 5rem;
+}
+
+#buttons button {
+	max-height: 100%;
+}
+
+#buttons svg {
+	width: 3rem;
+	height: 3rem;
+	max-height: 100%;
+	max-width: 100%;
+}

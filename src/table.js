@@ -9,7 +9,7 @@ export default class Legend extends Component {
         if (get(get(this, 'props.diff'), `ports.${port}.${field}`) != null) {
             style = {
                 backgroundColor: "lightcoral",
-                border: "1px black solid",
+                border: "1px lightgrey solid",
             }
         }
         return style

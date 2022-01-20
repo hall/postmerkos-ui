@@ -49,6 +49,11 @@ Or, using docker,
     docker run -it -v $PWD:/app -w /app --entrypoint sh node:14-alpine -c "npm i && npm run dev"
 
 
+## Releasing
+
+A GitHub action (defined in [`.github/workflows/main.yaml`](./.github/workflows/main.yaml)) will run whenever a new tag is pushed and create a release.
+
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

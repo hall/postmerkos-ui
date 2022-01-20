@@ -4,7 +4,7 @@ on:
     tags:
       - "*"
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     container: node:16-alpine
     steps:
@@ -13,10 +13,15 @@ jobs:
 
       - name: Build
         run: |
+          apk add zip
+          sed -i "s|{/\* VERSION \*/}|${GITHUB_REF##*/}|g" src/index.js
+
           npm i
           npm run build
-          apk add zip
-          npm run release
+
+          NAME=${GITHUB_REPOSITORY##*/}
+          mv build $NAME
+          zip -r $NAME.zip $NAME
 
       - name: Release
         uses: softprops/action-gh-release@v1
