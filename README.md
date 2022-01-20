@@ -6,32 +6,31 @@ Freeraki is a basic UI for the [meraki-builder](https://github.com/halmartin/mer
 
 ## Installation
 
-Until there are releases available, build the static site with
+> **NOTE**: the [`configd`](https://github.com/halmartin/meraki-builder/pull/18)
+daemon must currently be manually started (and, given the alpha nature of this
+program, it's not recommended to automate it at boot)
 
-    npm i
-    npm run build
+Download the latest release
 
-or, using docker,
+    wget https://github.com/hall/freeraki-ui/releases/latest/download/freeraki-ui.zip 
 
-    docker run -it -v $PWD:/app -w /app --entrypoint sh node:14-alpine -c "npm i && npm run build"
+Move it onto your switch
 
-then copy the newly-created `./build` directory to your switch:
+    scp freeraki-ui.zip <switch>:
 
-    scp -r ./build <switch>:
+Unzip and update the permissions
 
-Now, on the switch, update the permissions
+    unzip freeraki-ui.zip
 
-    chmod o+r -R ./build
-    chmod o+x -R ./build/cgi-bin
+    chmod o+r -R ./freeraki-ui
+    chmod o+x -R ./freeraki-ui/cgi-bin
 
-and start `uhttpd`
+Start `uhttpd` on port 80
 
-    uhttpd -p 80 -h ./build
+    uhttpd -p 80 -h ./freeraki-ui
 
 Open http://<switch> in your browser and use your PAM login credentials.
 
-**NOTE**: the `configd` daemon must currently be manually started (and, given
-the alpha nature of this program, it's not recommended to automate it at boot)
 
 ## Development
 
@@ -45,6 +44,9 @@ For live-reloading (without auth or persistent config):
 
 Navigate to http://localhost:8080
 
+Or, using docker,
+
+    docker run -it -v $PWD:/app -w /app --entrypoint sh node:14-alpine -c "npm i && npm run dev"
 
 
 ## Contributing
