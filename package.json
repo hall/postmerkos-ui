@@ -18,11 +18,11 @@
     "build/*"
   ],
   "devDependencies": {
-    "copy-webpack-plugin": "^6.1.0",
+    "copy-webpack-plugin": "^6.4.1",
     "eslint": "^6.0.1",
     "eslint-config-synacor": "^3.0.4",
-    "preact-cli": "^3.3.1",
-    "sirv-cli": "^1.0.3"
+    "preact-cli": "^3.3.3",
+    "sirv-cli": "^1.0.14"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -30,9 +30,9 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "preact": "^10.1.0",
-    "preact-render-to-string": "^5.1.2",
-    "react-modal": "^3.14.3"
+    "preact": "^10.6.4",
+    "preact-render-to-string": "^5.1.19",
+    "react-modal": "^3.14.4"
   },
   "engines": {
     "node": ">=0.14 <=16"
