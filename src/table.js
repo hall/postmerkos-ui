@@ -22,9 +22,8 @@ export default class Legend extends Component {
         return (
             <table style={{
                 margin: "0 auto",
-                paddingBottom: "20px",
+                marginBottom: "20px",
                 width: "initial",
-
             }}>
                 <tr>
                     <th>port</th>

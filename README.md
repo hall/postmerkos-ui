@@ -57,3 +57,8 @@ A GitHub action (defined in [`.github/workflows/main.yaml`](./.github/workflows/
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+
+## Credits
+
+- Icons by https://github.com/danklammer/bytesize-icons

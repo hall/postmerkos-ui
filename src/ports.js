@@ -46,8 +46,6 @@ export default class Ports extends Component {
 		return (
 			<div>
 				<div style={{
-					marginLeft: "calc(-50vw + 50%)",
-					marginRight: "calc(-50vw + 50%)",
 					display: "flex",
 					justifyContent: "center",
 				}}>

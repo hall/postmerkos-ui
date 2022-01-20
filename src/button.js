@@ -4,6 +4,7 @@ export default function Button({ isLoading, children, ...props }) {
 
     return (
         <button
+            title="upload config"
             {...props}
             disabled={isLoading}
         >

@@ -99,9 +99,8 @@ export default class App extends Component {
 						flexWrap: "wrap"
 					}}>
 						<diw>
-							<h1 style={{ marginBottom: "-0.5rem" }}>Freeraki</h1>
-							<span style={{ fontSize: "0.9rem" }}>
-								{/* VERSION */} {/* NOTE: leave this comment as it gets replaced during build */}
+							<h1 style={{ marginBottom: "-0.75rem" }}>Freeraki</h1>
+							<span style={{ fontSize: "0.9rem", marginLeft: "0.5em" }}>
 							</span>
 						</diw>
 
@@ -110,6 +109,7 @@ export default class App extends Component {
 								{this.uploadButton()}
 
 								<button
+									title="view config"
 									onClick={() => this.setState({ showPreview: true })}>
 									<svg id="i-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
 										<circle cx="17" cy="15" r="1" />
