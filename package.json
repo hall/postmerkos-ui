@@ -6,6 +6,7 @@
   "scripts": {
     "build": "preact build --prerender && cp -r ./assets/* ./build/",
     "zip": "zip -r latest.zip build",
+    "release": "NAME=${GITHUB_REPOSITORY##*/}; mv build $NAME && zip -r $NAME.zip $NAME",
     "analyze": "preact build --analyze -p",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch",
