@@ -1,6 +1,7 @@
 import { Component } from 'preact';
 import Port from './port';
 import ReactModal from 'react-modal';
+import { get } from 'lodash';
 
 // list of possible port states
 let states = [
@@ -68,6 +69,7 @@ let states = [
 export default class Legend extends Component {
 
     render() {
+        let poe = get(this, 'props.poe');
         return (
             <button
                 title="information"
@@ -101,26 +103,33 @@ export default class Legend extends Component {
                             Legend
                         </summary>
                         <dl>
-                            {states.map(s => {
-                                return (
-                                    <span
-                                        style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            marginBottom: "10px"
-                                        }}
-                                    >
-                                        <dt><Port number="X" port={s["port"]} /></dt>
-                                        <dd
+                            {states
+                                .filter(s => {
+                                    if (!poe && 'poe' in s["port"]) {
+                                        return false
+                                    }
+                                    return true
+                                })
+                                .map(s => {
+                                    return (
+                                        <span
                                             style={{
-                                                marginLeft: "10px",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                marginBottom: "10px"
                                             }}
                                         >
-                                            {s["help"]}
-                                        </dd>
-                                    </span>
-                                )
-                            })}
+                                            <dt><Port number="X" port={s["port"]} /></dt>
+                                            <dd
+                                                style={{
+                                                    marginLeft: "10px",
+                                                }}
+                                            >
+                                                {s["help"]}
+                                            </dd>
+                                        </span>
+                                    )
+                                })}
                         </dl>
                     </details>
                 </ReactModal>

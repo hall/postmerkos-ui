@@ -41,6 +41,7 @@ export default class Port extends Component {
 	render() {
 		let number = get(this, 'props.number');
 		let port = get(this, 'props.port');
+		let poe = get(this, 'props.poe');
 
 		return (
 			<div
@@ -64,7 +65,7 @@ export default class Port extends Component {
 					marginLeft: "0.1em",
 					display: get(port, "stp") ? "initial" : "none",
 				}}>&bull;</span>
-				<span style={{
+				{poe && <span style={{
 					position: "absolute",
 					right: "0",
 					top: "0",
@@ -73,7 +74,7 @@ export default class Port extends Component {
 					marginTop: "0.5em",
 					marginRight: "0.3em",
 					display: get(port, "poe.enabled") ? "initial" : "none",
-				}}>{get(port, "poe.standard")?.substring(5)}</span>
+				}}>{get(port, "poe.standard")?.substring(5)}</span>}
 				{number}<span style={{
 					position: "absolute",
 					fontSize: "0.6em",

@@ -17,6 +17,7 @@ export default class Legend extends Component {
 
     render() {
         let ports = get(this, 'props.ports');
+        let poe = get(this, 'props.poe');
         let updatePort = get(this, 'props.updatePort');
 
         return (
@@ -30,13 +31,13 @@ export default class Legend extends Component {
                     <th>enabled</th>
                     <th>established</th>
                     <th>speed</th>
-                    {ports["1"].poe && <th>power</th>}
+                    {poe && <th>power</th>}
                     <th>vlan</th>
                     <th>allowed</th>
                     <th>lacp</th>
                     <th>stp</th>
-                    <th>poe</th>
-                    <th>standard</th>
+                    {poe && <th>poe</th>}
+                    {poe && <th>standard</th>}
                 </tr>
                 {Object.keys(ports).map(port => {
                     let p = ports[port]
@@ -62,7 +63,7 @@ export default class Legend extends Component {
 
                             <td>{get(p, "link.speed")}</td>
 
-                            {p.poe && <td>{get(p, "poe.power")}</td>}
+                            {poe && <td>{get(p, "poe.power")}</td>}
 
                             <td style={this.diffStyle(port, "vlan.pvid")} >
                                 <input name="pvid" type="number" min="1" max="4094" value={get(p, 'vlan.pvid')}
@@ -90,6 +91,7 @@ export default class Legend extends Component {
                                 } />
                             </td>
 
+                            {poe &&
                             <td style={this.diffStyle(port, "poe.enabled")} >
                                 <input id="poe" type="checkbox" value={poeEnabled} defaultChecked={poeEnabled} onClick={e => {
                                     if (get(port, "poe.standard") == undefined) {
@@ -99,7 +101,9 @@ export default class Legend extends Component {
                                     }
                                 }} />
                             </td>
+                            }
 
+                            {poe &&
                             <td style={this.diffStyle(port, "poe.standard")} >
                                 <select name="poeStandard" value={get(p, "poe.standard")} onChange={e =>
                                     updatePort(port, 'poe.standard', e.target.value)
@@ -108,6 +112,7 @@ export default class Legend extends Component {
                                     <option value="802.3at">802.3at</option>
                                 </select>
                             </td>
+                            }
                         </tr>
 
                     )

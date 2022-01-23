@@ -34,6 +34,7 @@ export default class Ports extends Component {
 	render() {
 		let config = get(this, "props.config")
 		let ports = get(config, "ports")
+		let poe = get(this, "props.poe")
 		let count = Object.keys(ports).length
 
 		const compare = (a, b) => {

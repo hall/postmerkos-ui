@@ -25,6 +25,7 @@ const getConfig = () => {
 export default class App extends Component {
 	state = {
 		showPreview: false,
+		poe: false,
 	}
 	uploadButton = () => {
 		const [isButtonLoading, setIsButtonLoading] = useState(false);
@@ -74,7 +75,9 @@ export default class App extends Component {
 
 	async componentDidMount() {
 		const incoming = (await getConfig()).data;
-		this.setState({ config: incoming, configOnDisk: incoming, diff: {} });
+		if (get(incoming, "device", "").endsWith("P")) {
+			this.setState({ poe: true })
+		}
 	}
 
 	// updateDiff returns an object whose values are in b but not a
@@ -134,7 +137,7 @@ export default class App extends Component {
 									</textarea>
 								</ReactModal>
 
-								<Legend />
+								<Legend poe={this.state.poe} />
 							</div>}
 						</div>
 					</div>
@@ -144,8 +147,15 @@ export default class App extends Component {
 				</div>
 				{config &&
 					<div>
-						<Ports config={config} />
-						<Table ports={config["ports"]} updatePort={this.updatePort} diff={get(this, 'state.diff')} />
+						<Ports
+							config={config}
+							poe={this.state.poe
+							} />
+						<Table ports={config["ports"]}
+							updatePort={this.updatePort}
+							poe={this.state.poe}
+							diff={get(this, 'state.diff')}
+						/>
 					</div>
 				}
 			</div>
