@@ -14,7 +14,7 @@ jobs:
       - name: Build
         run: |
           apk add zip
-          sed -i "s|{/\* VERSION \*/}|${GITHUB_REF##*/}|g" src/index.js
+          sed -i "s|{/\* VERSION \*/}.*|${GITHUB_REF##*/}|g" src/index.js
 
           npm i
           npm run build

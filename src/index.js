@@ -123,7 +123,7 @@ export default class App extends Component {
 						<diw>
 							<h1 style={{ marginBottom: "-0.75rem" }}>Freeraki</h1>
 							<span style={{ fontSize: "0.9rem", marginLeft: "0.5em" }}>
-								{/* VERSION */} {/* NOTE: do not remove; this is replaced in CI */}
+								{/* VERSION */} dev {/* NOTE: do not remove; this is replaced in CI */}
 							</span>
 						</diw>
 
