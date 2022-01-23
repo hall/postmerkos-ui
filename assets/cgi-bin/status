@@ -2,4 +2,5 @@
 echo "Content-type: application/json"
 echo "" # <- necessary; probably required by the rfc
 
-status
+# echo semi-minifies the response
+echo $(status)
