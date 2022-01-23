@@ -1,39 +1,23 @@
 {
     "device": "meraki_MS220-8P",
     "date": "2020-12-05T13:24:05Z",
-    "temperature": "43.9 C",
+    "temperature": "42.9",
     "ports": {
         "1": {
             "link": {
                 "established": true,
                 "speed": 1000
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
-                "power": 0
+                "power": 100
             }
         },
         "2": {
             "link": {
-                "established": false,
-                "speed": 0
-            },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
+                "established": true,
+                "speed": 100
             },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },
@@ -42,15 +26,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },
@@ -59,15 +35,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },

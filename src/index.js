@@ -8,23 +8,29 @@ import Table from './table';
 import Button from './button';
 import ReactModal from 'react-modal';
 import axios from 'axios';
+import useInterval from './hook';
 
 // API endpoint of switch in prod
-let endpoint = "/cgi-bin/config";
+let endpoint = "/cgi-bin";
 // a local file to test port layouts in dev
-let testFile = "/test/48.json";
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+	endpoint = "/test/24";
+}
 
 // getConfig returns the latest config file
 const getConfig = () => {
-	if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-		endpoint = testFile;
-	}
-	return axios.get(endpoint);
+	return axios.get(`${endpoint}/config`);
+}
+
+// getStatus returns the latest status
+const getStatus = () => {
+	return axios.get(`${endpoint}/status`);
 }
 
 export default class App extends Component {
 	state = {
 		showPreview: false,
+		status: {},
 		poe: false,
 	}
 	uploadButton = () => {
@@ -75,9 +81,16 @@ export default class App extends Component {
 
 	async componentDidMount() {
 		const incoming = (await getConfig()).data;
+		const status = (await getStatus()).data;
 		if (get(incoming, "device", "").endsWith("P")) {
 			this.setState({ poe: true })
 		}
+		this.setState({
+			config: incoming,
+			configOnDisk: incoming,
+			diff: {},
+			status: status
+		});
 	}
 
 	// updateDiff returns an object whose values are in b but not a
@@ -94,6 +107,12 @@ export default class App extends Component {
 	render() {
 		ReactModal.setAppElement('html');
 		const config = get(this, 'state.config');
+
+		useInterval(async () => {
+			let status = (await getStatus()).data
+			this.setState({ status: status });
+		}, 1000 * 10); // seconds
+
 		return (
 			<div>
 				<div id="heading">
@@ -142,17 +161,19 @@ export default class App extends Component {
 						</div>
 					</div>
 					<div>{get(this.state.config, "device")}</div>
-					<div>{get(this.state.config, "date")}</div>
-					<div>{get(this.state.config, "temperature")}</div>
+					<div>{this.state.status.date}</div>
+					<div>{this.state.status.temperature} &deg;C</div>
 				</div>
 				{config &&
 					<div>
 						<Ports
 							config={config}
+							status={this.state.status}
 							poe={this.state.poe
 							} />
 						<Table ports={config["ports"]}
 							updatePort={this.updatePort}
+							status={this.state.status}
 							poe={this.state.poe}
 							diff={get(this, 'state.diff')}
 						/>

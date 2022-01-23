@@ -17,6 +17,7 @@ export default class Legend extends Component {
 
     render() {
         let ports = get(this, 'props.ports');
+        let status = get(this, 'props.status');
         let poe = get(this, 'props.poe');
         let updatePort = get(this, 'props.updatePort');
 
@@ -40,7 +41,7 @@ export default class Legend extends Component {
                     {poe && <th>standard</th>}
                 </tr>
                 {Object.keys(ports).map(port => {
-                    let p = ports[port]
+                    let p = { ...ports[port], ...status.ports[port] }
                     let enabled = get(p, "enabled")
                     let lacp = get(p, "lacp")
                     let stp = get(p, "stp")
@@ -92,26 +93,26 @@ export default class Legend extends Component {
                             </td>
 
                             {poe &&
-                            <td style={this.diffStyle(port, "poe.enabled")} >
-                                <input id="poe" type="checkbox" value={poeEnabled} defaultChecked={poeEnabled} onClick={e => {
-                                    if (get(port, "poe.standard") == undefined) {
-                                        updatePort(port, 'poe', { "enabled": !poeEnabled, "standard": "802.3af" })
-                                    } else {
-                                        updatePort(port, 'poe.enabled', !poeEnabled)
-                                    }
-                                }} />
-                            </td>
+                                <td style={this.diffStyle(port, "poe.enabled")} >
+                                    <input id="poe" type="checkbox" value={poeEnabled} defaultChecked={poeEnabled} onClick={e => {
+                                        if (get(port, "poe.standard") == undefined) {
+                                            updatePort(port, 'poe', { "enabled": !poeEnabled, "standard": "802.3af" })
+                                        } else {
+                                            updatePort(port, 'poe.enabled', !poeEnabled)
+                                        }
+                                    }} />
+                                </td>
                             }
 
                             {poe &&
-                            <td style={this.diffStyle(port, "poe.standard")} >
-                                <select name="poeStandard" value={get(p, "poe.standard")} onChange={e =>
-                                    updatePort(port, 'poe.standard', e.target.value)
-                                }>
-                                    <option value="802.3af">802.3af</option>
-                                    <option value="802.3at">802.3at</option>
-                                </select>
-                            </td>
+                                <td style={this.diffStyle(port, "poe.standard")} >
+                                    <select name="poeStandard" value={get(p, "poe.standard")} onChange={e =>
+                                        updatePort(port, 'poe.standard', e.target.value)
+                                    }>
+                                        <option value="802.3af">802.3af</option>
+                                        <option value="802.3at">802.3at</option>
+                                    </select>
+                                </td>
                             }
                         </tr>
 

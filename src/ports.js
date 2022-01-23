@@ -33,11 +33,16 @@ export default class Ports extends Component {
 
 	render() {
 		let config = get(this, "props.config")
+		let status = get(this, "props.status")
 		let ports = get(config, "ports")
 		let poe = get(this, "props.poe")
 		let count = Object.keys(ports).length
 
 		const compare = (a, b) => {
+			if (count < 12) {
+				// don't sort switches with less than 1 port group
+				return a - b
+			}
 			let firstSpf = count - this.state.spfCount
 			if (a > firstSpf || b > firstSpf)
 				return a - b
@@ -62,7 +67,7 @@ export default class Ports extends Component {
 						{
 							Object.keys(ports).sort(compare).map(port => {
 								let p =
-									<Port number={port} port={ports[port]} />
+									<Port number={port} port={{ ...ports[port], ...status["ports"][port] }} poe={poe} />
 								let idx = port % 12
 								if ((idx == 0 || idx == 11)) {
 									return [p, <div style={{ padding: "1rem" }}></div>]

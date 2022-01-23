@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "Content-type: application/json"
+echo "" # <- necessary; probably required by the rfc
+
+status

@@ -1,0 +1,419 @@
+{
+    "device": "meraki_MS220-8P",
+    "date": "2020-12-05T13:24:05Z",
+    "temperature": "42.9",
+    "ports": {
+        "1": {
+            "link": {
+                "established": true,
+                "speed": 1000
+            },
+            "poe": {
+                "power": 100
+            }
+        },
+        "2": {
+            "link": {
+                "established": true,
+                "speed": 100
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "3": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "4": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "5": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "6": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "7": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "8": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "9": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "10": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "11": {
+            "link": {
+                "established": true,
+                "speed": 10000
+            },
+            "poe": {
+                "power": 100
+            }
+        },
+        "12": {
+            "link": {
+                "established": true,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "13": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "14": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "15": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "16": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "17": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "18": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "19": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "20": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "21": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "22": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "23": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "24": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "25": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "26": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "27": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        },
+        "28": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "lacp": false,
+            "enabled": true,
+            "vlan": {
+                "pvid": 1,
+                "allowed": "1-4094"
+            },
+            "poe": {
+                "standard": "802.3at",
+                "enabled": true,
+                "power": 0
+            }
+        }
+    }
+}
