@@ -67,7 +67,7 @@ export default class Ports extends Component {
 						{
 							Object.keys(ports).sort(compare).map(port => {
 								let p =
-									<Port number={port} port={{ ...ports[port], ...status["ports"][port] }} poe={poe} />
+									<Port number={port} port={{ ...status["ports"][port], ...ports[port] }} poe={poe} />
 								let idx = port % 12
 								if ((idx == 0 || idx == 11)) {
 									return [p, <div style={{ padding: "1rem" }}></div>]

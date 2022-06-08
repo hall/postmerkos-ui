@@ -160,9 +160,23 @@ export default class App extends Component {
 							</div>}
 						</div>
 					</div>
-					<div>{get(this.state.config, "device")}</div>
-					<div>{this.state.status.date}</div>
-					<div>{this.state.status.temperature} &deg;C</div>
+					<div>
+						<div>{get(this.state.status, "device")}</div>
+						<div>{this.state.status.date}</div>
+
+						{this.state.status &&
+							Object.keys(get(this.state.status, "temperature", {})).map((type, value) => {
+								return <div>
+									<div>{type}:&nbsp;
+										{this.state.status.temperature[type].map((c) => {
+											return c + " "
+										})}
+										(<span style={{ fontSize: "0.8em" }}>&deg;C</span>)
+									</div>
+								</div>
+							})
+						}
+					</div>
 				</div>
 				{config &&
 					<div>

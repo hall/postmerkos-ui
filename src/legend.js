@@ -36,11 +36,11 @@ let states = [
         }
     },
     {
-        "help": "poe enabled (802.3at/af standard)",
+        "help": "poe enabled (802.3at/af mode)",
         "port": {
             "poe": {
                 "enabled": true,
-                "standard": "802.3at"
+                "mode": "802.3at"
             }
         }
     },

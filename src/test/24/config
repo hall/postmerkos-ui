@@ -1,16 +1,12 @@
 {
-    "device": "meraki_MS220-8P",
-    "date": "2020-12-05T13:24:05Z",
     "ports": {
         "1": {
-            "lacp": false,
-            "enabled": true,
             "vlan": {
                 "pvid": 1,
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -18,23 +14,24 @@
             "lacp": false,
             "enabled": true,
             "vlan": {
-                "pvid": 1,
+                "pvid": 10,
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
         "3": {
             "lacp": false,
             "enabled": true,
+            "stp": true,
             "vlan": {
                 "pvid": 1,
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -46,43 +43,44 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
         "5": {
-            "lacp": false,
+            "lacp": true,
             "enabled": true,
+            "stp": true,
             "vlan": {
                 "pvid": 1,
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
         "6": {
-            "lacp": false,
+            "lacp": true,
             "enabled": true,
             "vlan": {
                 "pvid": 1,
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
         "7": {
             "lacp": false,
-            "enabled": true,
+            "enabled": false,
             "vlan": {
                 "pvid": 1,
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -94,7 +92,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -122,7 +120,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -134,7 +132,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -146,7 +144,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -158,7 +156,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -170,7 +168,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -182,7 +180,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -194,7 +192,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -206,7 +204,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -234,7 +232,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -246,7 +244,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -274,7 +272,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -286,7 +284,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },

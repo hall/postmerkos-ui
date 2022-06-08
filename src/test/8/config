@@ -1,6 +1,4 @@
 {
-    "device": "meraki_MS220-8P",
-    "date": "2020-12-05T13:24:05Z",
     "ports": {
         "1": {
             "lacp": false,
@@ -10,7 +8,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -22,7 +20,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -34,7 +32,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -46,7 +44,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -58,7 +56,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -70,7 +68,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -82,7 +80,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },
@@ -94,7 +92,7 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "standard": "802.3at",
+                "mode": "802.3at",
                 "enabled": true
             }
         },

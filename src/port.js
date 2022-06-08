@@ -74,7 +74,7 @@ export default class Port extends Component {
 					marginTop: "0.5em",
 					marginRight: "0.3em",
 					display: get(port, "poe.enabled") ? "initial" : "none",
-				}}>{get(port, "poe.standard")?.substring(5)}</span>}
+				}}>{get(port, "poe.mode")?.substring(5)}</span>}
 				{number}<span style={{
 					position: "absolute",
 					fontSize: "0.6em",

@@ -44,15 +44,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },
@@ -61,15 +53,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },
@@ -78,15 +62,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },
@@ -95,15 +71,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },
@@ -112,15 +80,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         },
@@ -129,15 +89,7 @@
                 "established": false,
                 "speed": 0
             },
-            "lacp": false,
-            "enabled": true,
-            "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
-            },
             "poe": {
-                "standard": "802.3at",
-                "enabled": true,
                 "power": 0
             }
         }

@@ -18,7 +18,7 @@
             "stp": true,
             "poe": {
                 "enabled": true,
-                "standard": "802.3af"
+                "mode": "802.3af"
             }
         },
         {
@@ -31,7 +31,7 @@
             "enabled": true,
             "poe": {
                 "enabled": true,
-                "standard": "802.3at"
+                "mode": "802.3at"
             },
             "vlan": {
                 "pvid": 1,
