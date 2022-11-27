@@ -113,7 +113,7 @@ export default class App extends Component {
 		useInterval(async () => {
 			let status = (await getStatus()).data
 			this.setState({ status: status });
-		}, 1000 * 10); // seconds
+		}, 1000 * 3); // seconds
 
 		return (
 			<div>
