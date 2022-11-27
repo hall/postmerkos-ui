@@ -45,7 +45,7 @@ export default class App extends Component {
 					config["date"] = new Date().toISOString();
 					this.setState({ config })
 					if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
-						axios.post(endpoint, JSON.stringify(config, null, 4))
+						axios.post(`${endpoint}/config`, JSON.stringify(config, null, 4))
 							.then(resp => {
 								setIsButtonLoading(false)
 								this.setState({ configOnDisk: config, diff: {} });
@@ -61,7 +61,9 @@ export default class App extends Component {
 				}}
 				isLoading={isButtonLoading}
 			>
-				<svg id="i-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+				<svg className={Object.values(get(this, 'state.diff')).every(x => !x) ? "": "diff-foreground" } 
+			        id="i-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none"
+					stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
 					<path d="M9 22 C0 23 1 12 9 13 6 2 23 2 22 10 32 7 32 23 23 22 M11 18 L16 14 21 18 M16 14 L16 29" />
 				</svg>
 			</Button>
@@ -76,13 +78,13 @@ export default class App extends Component {
 
 		let config = cloneDeep(this.state.config)
 		config["ports"][portNumber] = set(config.ports[portNumber], path, value)
-		this.setState({ config: config, diff: this.updateDiff(get(this, 'state.configOnDisk'), config) });
+		this.setState({ config: config, diff: this.updateDiff(config, get(this, 'state.configOnDisk')) });
 	}
 
 	async componentDidMount() {
 		const incoming = (await getConfig()).data;
 		const status = (await getStatus()).data;
-		if (get(incoming, "device", "").endsWith("P")) {
+		if (get(status, "device", "").endsWith("P")) {
 			this.setState({ poe: true })
 		}
 		this.setState({
@@ -169,7 +171,7 @@ export default class App extends Component {
 								return <div>
 									<div>{type}:&nbsp;
 										{this.state.status.temperature[type].map((c) => {
-											return c + " "
+											return c.toFixed(1) + " "
 										})}
 										(<span style={{ fontSize: "0.8em" }}>&deg;C</span>)
 									</div>
@@ -186,6 +188,7 @@ export default class App extends Component {
 							poe={this.state.poe
 							} />
 						<Table ports={config["ports"]}
+							config={config}
 							updatePort={this.updatePort}
 							status={this.state.status}
 							poe={this.state.poe}

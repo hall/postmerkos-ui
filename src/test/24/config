@@ -1,6 +1,7 @@
 {
     "ports": {
         "1": {
+            "name": "router",
             "vlan": {
                 "pvid": 1,
                 "allowed": "1-4094"
@@ -23,6 +24,7 @@
             }
         },
         "3": {
+            "name": "laptop",
             "lacp": false,
             "enabled": true,
             "stp": true,
@@ -36,6 +38,7 @@
             }
         },
         "4": {
+            "name": "desktop",
             "lacp": false,
             "enabled": true,
             "vlan": {
@@ -43,7 +46,6 @@
                 "allowed": "1-4094"
             },
             "poe": {
-                "mode": "802.3at",
                 "enabled": true
             }
         },

@@ -16,7 +16,7 @@ Download the latest release
 
 Move it onto your switch
 
-    scp freeraki-ui.zip <switch>:
+    scp -O freeraki-ui.zip <switch>:
 
 Unzip and update the permissions
 
