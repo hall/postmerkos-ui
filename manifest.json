@@ -1,6 +1,6 @@
 {
-  "name": "freeraki",
-  "short_name": "freeraki",
+  "name": "postmerkos-ui",
+  "short_name": "postmerkos-ui",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
