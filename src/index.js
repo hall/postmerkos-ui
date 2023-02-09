@@ -14,7 +14,7 @@ import useInterval from './hook';
 let endpoint = "/cgi-bin";
 // a local file to test port layouts in dev
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-	endpoint = "/test/48";
+	endpoint = "/test/24";
 }
 
 // getConfig returns the latest config file
