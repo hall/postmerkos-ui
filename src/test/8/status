@@ -1,7 +1,14 @@
 {
-    "device": "meraki_MS220-8P",
-    "date": "2020-12-05T13:24:05Z",
-    "temperature": "42.9",
+    "datetime": "2020-12-05T13:24:05Z",
+    "device": "MS220-8P",
+    "temperature": {
+        "cpu": [
+            36.1
+        ],
+        "poe": [
+            29.8
+        ]
+    },
     "ports": {
         "1": {
             "link": {

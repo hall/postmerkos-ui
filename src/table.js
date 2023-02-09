@@ -117,8 +117,8 @@ export default class Legend extends Component {
 									<select name="poeMode" value={get(p, "poe.mode")} onChange={e =>
 										updatePort(port, 'poe.mode', e.target.value)
 									}>
-										<option value="802.3af">802.3af</option>
-										<option value="802.3at">802.3at</option>
+										<option value="af">802.3af</option>
+										<option value="at">802.3at</option>
 									</select>
 								</td>
 							}

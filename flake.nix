@@ -9,7 +9,7 @@
       {
         devShell = with pkgs; mkShell {
           buildInputs = [
-            nodejs
+            nodejs-18_x
             zip
           ];
         };

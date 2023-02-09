@@ -42,7 +42,7 @@ export default class App extends Component {
 				onClick={() => {
 					setIsButtonLoading(true);
 
-					config["date"] = new Date().toISOString();
+					config["datetime"] = new Date().toISOString();
 					this.setState({ config })
 					if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
 						axios.post(`${endpoint}/config`, JSON.stringify(config, null, 4))
@@ -164,7 +164,7 @@ export default class App extends Component {
 					</div>
 					<div>
 						<div>{get(this.state.status, "device")}</div>
-						<div>{this.state.status.date}</div>
+						<div>{this.state.status.datetime}</div>
 
 						{this.state.status &&
 							Object.keys(get(this.state.status, "temperature", {})).map((type, value) => {
