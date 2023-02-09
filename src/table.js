@@ -43,9 +43,10 @@ export default class Legend extends Component {
 					let enabled = get(p, 'enabled', true);
 					let lacp = get(p, 'lacp');
 					let stp = get(p, 'stp');
+					let established = get(p, 'link.established');
 					let poeEnabled = get(p, 'poe.enabled');
 					return (
-						<tr>
+						<tr style={established || "opacity: 0.5;"}>
 							<td>{port}</td>
 
 							<td className={this.diffStyle(port, 'enabled')} >
@@ -67,11 +68,12 @@ export default class Legend extends Component {
 								/>
 							</td>
 
-							<td>{get(p, 'link.established').toString()}</td>
+							<td>{established.toString()}</td>
 
 							<td>{get(p, 'link.speed')}</td>
 
-							{poe && <td>{get(p, "poe.power")}</td>}
+							{/* TODO: not found in the merged dict */}
+							{poe && <td>{get(status.ports[port], "poe.power").toFixed(2)}</td>}
 
 
 							<td className={this.diffStyle(port, "vlan.pvid")} >
