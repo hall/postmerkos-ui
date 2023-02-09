@@ -5,18 +5,20 @@
  *
  * Variables will remain uncompiled so the theme can update dynamically
  * at runtime in the browser.
+ *
+ * loosely based on https://www.nordtheme.com/
  */
 
  :root {
-	--background-body: #202b38;
-	--background: #161f27;
-	--background-alt: #1a242f;
+	--background-body: #3b4252;
+	--background: #2e3440;
+	--background-alt: #434c5e;
   
-	--selection: #161f27;
+	--selection: #4c566a;
   
-	--text-main: #dbdbdb;
-	--text-bright: #ffffff;
-	--text-muted: #717880;
+	--text-main: #e5e9f0;
+	--text-bright: #eceff4;
+	--text-muted: #d8dee9;
   
 	--links: #41adff;
 	--focus: #0096bfab;
@@ -40,15 +42,15 @@
   
   @media (prefers-color-scheme: light) {
   :root {
-	--background-body: #ffffff;
-	--background: #efefef;
-	--background-alt: #f7f7f7;
+	--background-body: #e5e9f0;
+	--background: #eceff4;
+	--background-alt: #d8dee9;
   
 	--selection: #9e9e9e;
   
-	--text-main: #363636;
-	--text-bright: #000000;
-	--text-muted: #999999;
+	--text-main: #3b4252;
+	--text-bright: #2e3440;
+	--text-muted:#434c5e;
   
 	--links: #0076d1;
 	--focus: #0096bfab;
@@ -606,9 +608,9 @@ td {
 }
 
 .diff-background {
-  background-color: lightcoral;
+  background-color: #bf616a;
 }
 
 .diff-foreground {
-  color: lightcoral;
+  color: #bf616a;
 }

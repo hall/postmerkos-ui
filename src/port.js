@@ -20,15 +20,15 @@ export default class Port extends Component {
 		}
 		switch (get(port, "link.speed")) {
 			case 100:
-				style["backgroundColor"] = "orange"
+				style["backgroundColor"] = "#ebcb8b"
 				style["color"] = "black";
 				break
 			case 1000:
-				style["backgroundColor"] = "lightgreen"
+				style["backgroundColor"] = "#8fbcbb"
 				style["color"] = "black";
 				break
 			case 10000:
-				style["backgroundColor"] = "lightblue"
+				style["backgroundColor"] = "#a3be8c"
 				style["color"] = "black";
 				break
 		}
