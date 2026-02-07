@@ -6,35 +6,28 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    container: node:16-alpine
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
 
       - name: Build
         run: |
-          apk add zip
-          sed -i "s|{/\* VERSION \*/}.*|${GITHUB_REF##*/}|g" src/index.js
+          nix develop --command bash -c '
+            sed -i "s|{/\* VERSION \*/}.*|${GITHUB_REF##*/}|g" src/index.jsx
 
-          npm i
-          npm run build
+            npm ci
+            npm run build
 
-          NAME=${GITHUB_REPOSITORY##*/}
-          mv build $NAME
-          zip -r $NAME.zip $NAME
+            NAME=${GITHUB_REPOSITORY##*/}
+            mv build $NAME
+            zip -r $NAME.zip $NAME
+          '
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: "*.zip"
-
-      # NOTE: according to GH, it is not recommended to cache node_modules
-      # https://github.com/actions/cache/blob/611465405cc89ab98caca2c42504d9289fb5f22e/examples.md#node---npm
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
