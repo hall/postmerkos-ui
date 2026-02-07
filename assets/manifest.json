@@ -4,11 +4,11 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fff",
-  "theme_color": "#673ab8",
+  "background_color": "#3b4252",
+  "theme_color": "#3b4252",
   "icons": [
     {
-      "src": "/assets/icon.png",
+      "src": "/icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
