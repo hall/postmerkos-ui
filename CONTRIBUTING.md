@@ -21,4 +21,4 @@ Then navigate to http://localhost:8080.
 
 ## Releasing
 
-A GitHub action (defined in [`.github/workflows/main.yaml`](./.github/workflows/main.yaml)) will run whenever a new tag is pushed and create a release.
+[A GitHub action](./.github/workflows/main.yaml)) will create a new release whenever a new version is specified in [`CHANGELOG.md`](./CHANGELOG.md).
