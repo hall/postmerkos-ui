@@ -1,0 +1,104 @@
+{
+    "datetime": "2020-12-05T13:24:05Z",
+    "device": "MS220-8P",
+    "temperature": {
+        "cpu": [
+            36.1
+        ],
+        "poe": [
+            29.8
+        ]
+    },
+    "ports": {
+        "1": {
+            "link": {
+                "established": true,
+                "speed": 1000
+            },
+            "poe": {
+                "power": 100
+            }
+        },
+        "2": {
+            "link": {
+                "established": true,
+                "speed": 100
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "3": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "4": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "5": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "6": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "7": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "8": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "9": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        },
+        "10": {
+            "link": {
+                "established": false,
+                "speed": 0
+            },
+            "poe": {
+                "power": 0
+            }
+        }
+    }
+}

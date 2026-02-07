@@ -1,0 +1,203 @@
+{
+  "ports": {
+    "1": {
+      "enabled": true,
+      "name": "router",
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "2": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "3": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "4": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "5": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "6": {
+      "enabled": true,
+      "name": "desktop",
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "7": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "8": {
+      "enabled": true,
+      "name": "laptop",
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "9": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "10": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "11": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "12": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "13": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "14": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "15": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "16": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "17": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "18": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "19": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "20": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "21": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "22": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "23": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "24": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "at"
+      }
+    },
+    "25": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "Unknown"
+      }
+    },
+    "26": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "Unknown"
+      }
+    },
+    "27": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "Unknown"
+      }
+    },
+    "28": {
+      "enabled": true,
+      "poe": {
+        "enabled": true,
+        "mode": "Unknown"
+      }
+    }
+  }
+}

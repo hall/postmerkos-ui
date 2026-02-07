@@ -574,8 +574,7 @@
 	font-size: 0.8em;
 	color: var(--text-muted);
   }
-  
-/*# sourceMappingURL=dark.css.map */
+
 tr:nth-child(even) {
   background-color: rgba(128,128,128,0.2);
 }
@@ -605,6 +604,18 @@ td {
 	height: 2rem;
 	max-height: 100%;
 	max-width: 100%;
+}
+
+dialog {
+  background-color: var(--background);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .diff-background {

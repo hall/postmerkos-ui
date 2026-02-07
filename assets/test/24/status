@@ -1,0 +1,268 @@
+{
+    "datetime": "2023-01-13T23:44:56Z",
+    "device": "MS220-24P",
+    "temperature": {
+      "cpu": [
+        35,
+        28
+      ],
+      "poe": [
+        29.35270881652832,
+        34.636722564697266
+      ]
+    },
+    "ports": {
+      "1": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "2": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 6.6999998092651367
+        }
+      },
+      "3": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 5.0
+        }
+      },
+      "4": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "5": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "6": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "7": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 4.6999998092651367
+        }
+      },
+      "8": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "9": {
+        "link": {
+          "established": true,
+          "speed": 100
+        },
+        "poe": {
+          "power": 5.9000000953674316
+        }
+      },
+      "10": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "11": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "12": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "13": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "14": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 8.8999996185302734
+        }
+      },
+      "15": {
+        "link": {
+          "established": true,
+          "speed": 100
+        },
+        "poe": {
+          "power": 2.4000000953674316
+        }
+      },
+      "16": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "17": {
+        "link": {
+          "established": true,
+          "speed": 100
+        },
+        "poe": {
+          "power": 7.0
+        }
+      },
+      "18": {
+        "link": {
+          "established": true,
+          "speed": 1000
+        },
+        "poe": {
+          "power": 4.0
+        }
+      },
+      "19": {
+        "link": {
+          "established": true,
+          "speed": 100
+        },
+        "poe": {
+          "power": 6.0999999046325684
+        }
+      },
+      "20": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "21": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "22": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "23": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "24": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": 0.0
+        }
+      },
+      "25": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": -1.0
+        }
+      },
+      "26": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": -1.0
+        }
+      },
+      "27": {
+        "link": {
+          "established": false,
+          "speed": 0
+        },
+        "poe": {
+          "power": -1.0
+        }
+      },
+      "28": {
+        "link": {
+          "established": false,
+          "speed": 10000
+        },
+        "poe": {
+          "power": -1.0
+        }
+      }
+    }
+}

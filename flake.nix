@@ -5,12 +5,18 @@
   };
   outputs = inputs@{ self, ... }:
     inputs.utils.lib.eachDefaultSystem (system:
-      let pkgs = inputs.nixpkgs.legacyPackages.${system}; in
+      let
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      in
       {
-        devShell = with pkgs; mkShell {
-          buildInputs = [
-            nodejs-14_x
+        devShells.default = with pkgs; mkShell {
+          packages = [
+            nodejs_22
             zip
+            claude-code
           ];
         };
       }
