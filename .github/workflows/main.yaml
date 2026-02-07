@@ -1,8 +1,10 @@
 name: Release
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - main
+    paths:
+      - CHANGELOG.md
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -10,13 +12,40 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Get version from CHANGELOG
+        id: version
+        run: |
+          VERSION=$(grep -m1 -oP '## \[\K[^\]]+' CHANGELOG.md)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          # extract release notes between first and second ## heading
+          BODY=$(awk '/^## \[/{if(n++)exit}n' CHANGELOG.md)
+          {
+            echo "body<<RELEASE_EOF"
+            echo "$BODY"
+            echo "RELEASE_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Check if tag exists
+        id: check
+        run: |
+          if git rev-parse "${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install Nix
+        if: steps.check.outputs.exists == 'false'
         uses: cachix/install-nix-action@v31
 
       - name: Build
+        if: steps.check.outputs.exists == 'false'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
         run: |
           nix develop --command bash -c '
-            sed -i "s|{/\* VERSION \*/}.*|${GITHUB_REF##*/}|g" src/index.jsx
+            sed -i "s|{/\* VERSION \*/}.*|${VERSION}|g" src/index.jsx
 
             npm ci
             npm run build
@@ -27,7 +56,9 @@ jobs:
           '
 
       - name: Release
+        if: steps.check.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
         with:
+          tag_name: ${{ steps.version.outputs.version }}
+          body: ${{ steps.version.outputs.body }}
           files: "*.zip"
