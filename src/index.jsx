@@ -127,9 +127,7 @@ function App() {
 		return (
 			<div id="heading">
 				<h1>postmerkOS</h1>
-				<div style={{ color: '#bf616a', padding: '1rem' }}>
-					{error}
-				</div>
+				<div className="error">{error}</div>
 			</div>
 		);
 	}
@@ -137,18 +135,15 @@ function App() {
 	return (
 		<div>
 			<div id="heading">
-				<div style={{
-					display: "flex",
-					flexWrap: "wrap"
-				}}>
+				<div className="heading-bar">
 					<div>
-						<h1 style={{ marginBottom: "-0.75rem" }}>postmerkOS</h1>
-						<span style={{ fontSize: "0.9rem", marginLeft: "0.5em" }}>
+						<h1>postmerkOS</h1>
+						<span className="version">
 							{/* VERSION */} dev {/* NOTE: do not remove; this is replaced in CI */}
 						</span>
 					</div>
 
-					<div style={{ display: "flex", marginLeft: "auto" }}>
+					<div className="heading-actions">
 						{config && <div id="buttons">
 							<Button
 								onClick={uploadConfig}
@@ -171,17 +166,10 @@ function App() {
 								</svg>
 							</button>
 
-							<dialog ref={dialogRef} onClick={(e) => {
+							<dialog className="config-preview" ref={dialogRef} onClick={(e) => {
 								if (e.target === dialogRef.current) dialogRef.current.close();
-							}} style={{
-								width: "90vw",
-								height: "90vh",
 							}}>
-								<textarea readOnly="true"
-									style={{
-										resize: "none",
-										height: "calc(100% - 12px)",
-									}}>
+								<textarea readOnly="true">
 									{JSON.stringify(config, null, 2)}
 								</textarea>
 							</dialog>
@@ -195,16 +183,15 @@ function App() {
 					<div>{status.datetime}</div>
 
 					{status &&
-						Object.keys(status.temperature ?? {}).map(type => {
-							return <div key={type}>
-								<div>{type}:&nbsp;
-									{status.temperature[type].map((c, i) => {
-										return <span key={i}>{c.toFixed(1)} </span>
-									})}
-									(<span style={{ fontSize: "0.8em" }}>&deg;C</span>)
-								</div>
+						Object.keys(status.temperature ?? {}).map(type => (
+							<div key={type}>
+								{type}:&nbsp;
+								{status.temperature[type].map((c, i) => (
+									<span key={i}>{c.toFixed(1)} </span>
+								))}
+								(<span className="status-temp">&deg;C</span>)
 							</div>
-						})
+						))
 					}
 				</div>
 			</div>

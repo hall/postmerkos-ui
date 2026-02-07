@@ -26,33 +26,18 @@ export default function Ports({ config, status, poe }) {
 	};
 
 	return (
-		<div>
-			<div style={{
-				display: "flex",
-				justifyContent: "center",
-			}}>
-				<div id="ports" style={{
-					display: "inline-grid",
-					justifyItems: "center",
-					margin: "4rem 1rem",
-					overflowX: "auto",
-					gridColumnGap: "2px",
-					gridRowGap: "2px",
-					position: "relative",
-					...gridStyle
-				}}>
-					{
-						Object.keys(ports).sort(compare).map(port => {
-							let p =
-								<Port key={port} number={port} port={{ ...status?.ports?.[port], ...ports[port] }} poe={poe} />
-							let idx = port % 12
-							if ((idx == 0 || idx == 11)) {
-								return [p, <div key={`spacer-${port}`} style={{ padding: "1rem" }}></div>]
-							}
-							return p
-						})
-					}
-				</div>
+		<div className="ports-container">
+			<div className="ports-grid" style={gridStyle}>
+				{
+					Object.keys(ports).sort(compare).map(port => {
+						let p = <Port key={port} number={port} port={{ ...status?.ports?.[port], ...ports[port] }} poe={poe} />
+						let idx = port % 12
+						if (idx == 0 || idx == 11) {
+							return [p, <div key={`spacer-${port}`} className="port-spacer" />]
+						}
+						return p
+					})
+				}
 			</div>
 		</div>
 	);
