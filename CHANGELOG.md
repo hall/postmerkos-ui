@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
-- PoE status display
+- Switch status wins over config file when merging
+- PoE status indicator is being displayed again
 
 ## [0.5.1] - 2026-02-07
 

@@ -25,7 +25,7 @@ export default function Table({ ports, status, poe, updatePort, diff }) {
 			</thead>
 			<tbody>
 				{Object.keys(ports).map(port => {
-					let p = { ...status?.ports?.[port], ...ports[port] };
+					let p = { ...ports[port], ...status?.ports?.[port] };
 					let enabled = p.enabled ?? true;
 					let lacp = p.lacp;
 					let stp = p.stp;

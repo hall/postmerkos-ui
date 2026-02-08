@@ -30,7 +30,7 @@ export default function Ports({ config, status, poe }) {
 			<div className="ports-grid" style={gridStyle}>
 				{
 					Object.keys(ports).sort(compare).map(port => {
-						let p = <Port key={port} number={port} port={{ ...status?.ports?.[port], ...ports[port] }} poe={poe} />
+						let p = <Port key={port} number={port} port={{ ...ports[port], ...status?.ports?.[port] }} poe={poe} />
 						let idx = port % 12
 						if (idx == 0 || idx == 11) {
 							return [p, <div key={`spacer-${port}`} className="port-spacer" />]
