@@ -15,11 +15,11 @@ jobs:
       - name: Get version from CHANGELOG
         id: version
         run: |
-          VERSION=$(grep -m1 -oP '## \[\K[^\]]+' CHANGELOG.md)
+          VERSION=$(grep -oP '## \[\K[^\]]+' CHANGELOG.md | grep -v Unreleased | head -1)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
-          # extract release notes between first and second ## heading
-          BODY=$(awk '/^## \[/{if(n++)exit}n' CHANGELOG.md)
+          # extract release notes for the first versioned heading, skipping the header line
+          BODY=$(awk '/^## \[/ && !/Unreleased/{if(n++)exit;next}n && !/^## \[.*Unreleased/' CHANGELOG.md)
           {
             echo "body<<RELEASE_EOF"
             echo "$BODY"
@@ -29,10 +29,7 @@ jobs:
       - name: Check if tag exists
         id: check
         run: |
-          VERSION="${{ steps.version.outputs.version }}"
-          if [ "$VERSION" = "Unreleased" ]; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          elif git rev-parse "$VERSION" >/dev/null 2>&1; then
+          if git rev-parse "${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"

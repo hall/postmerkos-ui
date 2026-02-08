@@ -7,9 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-02-07
+
 ### Changed
 
 - Use toggle boxes instead of radio buttons
+
+### Added
+
+- Link back to repo in header
+
+### Removed
+
+- Removed test files from published artifact
+- Removed boilerplate icon files and PWA functionality
 
 ## [0.5.0] - 2026-02-07
 

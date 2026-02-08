@@ -1,15 +1,26 @@
 import { defineConfig } from 'vite';
 import preact from '@preact/preset-vite';
+import { createReadStream } from 'fs';
+import { resolve } from 'path';
 
 export default defineConfig({
-	plugins: [preact()],
+	plugins: [
+		preact(),
+		{
+			name: 'serve-dev-data',
+			configureServer(server) {
+				server.middlewares.use('/test', (req, res, next) => {
+					const file = resolve('src/test', req.url.replace(/^\//, ''));
+					res.setHeader('Content-Type', 'application/json');
+					createReadStream(file).on('error', () => next()).pipe(res);
+				});
+			},
+		},
+	],
 	build: {
-		// Disable sourcemaps for production (matches old preact.config.js)
 		sourcemap: false,
-		// Output to 'build' directory for compatibility with existing scripts
 		outDir: 'build',
 	},
-	// Make test data available in dev mode
 	publicDir: 'assets',
 	server: {
 		port: 8080,

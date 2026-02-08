@@ -230,20 +230,18 @@ dialog.config-preview textarea {
 }
 
 #buttons {
-	height: 4rem;
-	width: 16rem;
+	display: flex;
+	align-items: center;
 }
 
 #buttons button {
-	max-height: 100%;
-	padding: 6%;
+	padding: 0.5rem;
 }
 
 #buttons svg {
-	width: 2rem;
-	height: 2rem;
-	max-height: 100%;
-	max-width: 100%;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: block;
 }
 
 .error {
