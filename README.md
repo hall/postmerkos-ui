@@ -6,7 +6,7 @@ A basic web interface for [meraki-builder](https://github.com/halmartin/meraki-b
 
 ## Installation
 
-> **NOTE**: the [`configd`](https://github.com/halmartin/meraki-builder/pull/18)
+> **NOTE**: the [`configd`](https://github.com/halmartin/meraki-builder/pull/29)
 daemon must currently be manually started (and, given the alpha nature of this
 program, it's not recommended to automate it at boot)
 
