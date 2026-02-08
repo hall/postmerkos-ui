@@ -29,7 +29,10 @@ jobs:
       - name: Check if tag exists
         id: check
         run: |
-          if git rev-parse "${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+          VERSION="${{ steps.version.outputs.version }}"
+          if [ "$VERSION" = "Unreleased" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          elif git rev-parse "$VERSION" >/dev/null 2>&1; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"

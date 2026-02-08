@@ -9,11 +9,7 @@ export default function Table({ ports, status, poe, updatePort, diff }) {
 	};
 
 	return (
-		<table style={{
-			margin: '0 auto',
-			marginBottom: '20px',
-			width: 'initial'
-		}}>
+		<table className="port-table">
 			<thead>
 				<tr>
 					<th>enabled</th>
@@ -34,23 +30,21 @@ export default function Table({ ports, status, poe, updatePort, diff }) {
 					let lacp = p.lacp;
 					let stp = p.stp;
 					let established = p.link?.established;
+					let poeMode = p.poe?.mode;
 					return (
-						<tr key={port} style={established ? {} : { opacity: 0.5 }}>
+						<tr key={port} className={established ? '' : 'inactive'}>
 
-							<td className={diffStyle(port, 'enabled')} >
-								{port}&nbsp;
-								<input
-									id="enabled"
-									type="checkbox"
-									value={enabled}
-									defaultChecked={enabled}
-									onChange={() => updatePort(port, 'enabled', !enabled)}
-								/>
+							<td className={diffStyle(port, 'enabled')}>
+								<span className="toggle">
+									<button
+										className={enabled ? 'active' : ''}
+										onClick={() => updatePort(port, 'enabled', !enabled)}
+									>{port}</button>
+								</span>
 							</td>
 
-							<td className={diffStyle(port, 'name')} >
+							<td className={diffStyle(port, 'name')}>
 								<input
-									id="name"
 									type="text"
 									value={p.name}
 									onChange={(e) => updatePort(port, 'name', e.target.value)}
@@ -61,43 +55,52 @@ export default function Table({ ports, status, poe, updatePort, diff }) {
 
 							{poe && <td>{status?.ports?.[port]?.poe?.power?.toFixed(2)}</td>}
 
-							<td className={diffStyle(port, "vlan.pvid")} >
-								<input name="pvid" type="number" min="1" max="4094"
+							<td className={diffStyle(port, "vlan.pvid")}>
+								<input className="vlan-input" type="number" min="1" max="4094"
 									value={p.vlan?.pvid}
-									style={{ width: "6ch" }}
 									onChange={e =>
 										updatePort(port, 'vlan.pvid', Number(e.target.value))
 									} />
 							</td>
 
-							<td className={diffStyle(port, "vlan.allowed")} >
-								<input name="vlans" value={p.vlan?.allowed}
+							<td className={diffStyle(port, "vlan.allowed")}>
+								<input value={p.vlan?.allowed}
 									onChange={e =>
 										updatePort(port, 'vlan.allowed', e.target.value)
 									} />
 							</td>
 
-							<td className={diffStyle(port, "lacp")} >
-								<input id="lacp" type="checkbox" value={lacp} defaultChecked={lacp} onChange={() =>
-									updatePort(port, 'lacp', !lacp)
-								} />
+							<td className={diffStyle(port, "lacp")}>
+								<span className="toggle">
+									<button
+										className={lacp ? 'active' : ''}
+										onClick={() => updatePort(port, 'lacp', !lacp)}
+									/>
+								</span>
 							</td>
 
-							<td className={diffStyle(port, "stp")} >
-								<input id="stp" type="checkbox" value={stp} defaultChecked={stp} onChange={() =>
-									updatePort(port, 'stp', !stp)
-								} />
+							<td className={diffStyle(port, "stp")}>
+								<span className="toggle">
+									<button
+										className={stp ? 'active' : ''}
+										onClick={() => updatePort(port, 'stp', !stp)}
+									/>
+								</span>
 							</td>
 
 							{poe &&
-								<td className={diffStyle(port, "poe.mode")} >
-									<select name="poeMode" value={p.poe?.mode} onChange={e =>
-										updatePort(port, 'poe.mode', e.target.value)
-									}>
-										<option value="at">802.3at</option>
-										<option value="af">802.3af</option>
-										<option value="disable">disabled</option>
-									</select>
+								<td className={diffStyle(port, "poe.mode")}>
+									<span className="toggle">
+										{['at', 'af'].map(mode => (
+											<button
+												key={mode}
+												className={poeMode === mode ? 'active' : ''}
+												onClick={() => updatePort(port, 'poe.mode', poeMode === mode ? 'disable' : mode)}
+											>
+												{mode}
+											</button>
+										))}
+									</span>
 								</td>
 							}
 						</tr>

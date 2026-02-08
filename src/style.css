@@ -13,7 +13,6 @@
 	--button-hover: #434c5e;
 	--form-text: #eceff4;
 	--selection: #4c566a;
-	--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6'%3E%3Cpath d='M0 0l6 6 6-6' fill='none' stroke='%23e5e9f0' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: light) {
@@ -30,7 +29,6 @@
 		--button-hover: #d8dee9;
 		--form-text: #2e3440;
 		--selection: #b8c5d6;
-		--select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6'%3E%3Cpath d='M0 0l6 6 6-6' fill='none' stroke='%233b4252' stroke-width='1.5'/%3E%3C/svg%3E");
 	}
 }
 
@@ -57,7 +55,9 @@ h1 {
 
 /* Form controls */
 
-input, button, textarea, select {
+input,
+button,
+textarea {
 	color: var(--form-text);
 	background: var(--bg);
 	font: inherit;
@@ -68,16 +68,15 @@ input, button, textarea, select {
 	transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-input:focus, select:focus, button:focus, textarea:focus {
+input:focus,
+button:focus,
+textarea:focus {
 	border-color: var(--focus);
 	box-shadow: 0 0 0 2px color-mix(in srgb, var(--focus) 30%, transparent);
 }
 
-button, select, input[type='checkbox'] {
-	cursor: pointer;
-}
-
 button {
+	cursor: pointer;
 	padding: 0.5rem 1.25rem;
 }
 
@@ -89,38 +88,13 @@ button:active {
 	transform: translateY(1px);
 }
 
-button:disabled, input:disabled, select:disabled {
+button:disabled,
+input:disabled {
 	cursor: not-allowed;
 	opacity: 0.5;
 }
 
-input[type='checkbox'] {
-	width: 16px;
-	height: 16px;
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0;
-	padding: 0;
-	appearance: none;
-	border-radius: 4px;
-}
-
-input[type='checkbox']:checked {
-	background: var(--focus);
-	border-color: var(--focus);
-}
-
-input[type='checkbox']:checked::before {
-	content: '✓';
-	display: block;
-	text-align: center;
-	font-size: 12px;
-	line-height: 16px;
-	color: var(--bg);
-	font-weight: 700;
-}
-
-input:not([type='checkbox']), select {
+input {
 	display: block;
 }
 
@@ -128,11 +102,6 @@ textarea {
 	width: 100%;
 	box-sizing: border-box;
 	resize: vertical;
-}
-
-select {
-	background: var(--bg) var(--select-arrow) calc(100% - 12px) center / 12px no-repeat;
-	padding-right: 2rem;
 }
 
 ::placeholder {
@@ -144,6 +113,11 @@ select {
 table {
 	border-collapse: collapse;
 	width: 100%;
+}
+
+.port-table {
+	margin: 0 auto 1.25rem;
+	width: auto;
 }
 
 th {
@@ -160,6 +134,50 @@ td {
 
 tbody tr:nth-child(even) {
 	background: var(--bg-alt);
+}
+
+tbody tr.inactive {
+	opacity: 0.5;
+}
+
+.vlan-input {
+	width: 6ch;
+}
+
+/* Toggle buttons */
+
+.toggle {
+	display: inline-flex;
+	gap: 0;
+}
+
+.toggle button {
+	padding: 0.25rem 0.5rem;
+	font-size: 0.8em;
+	border-radius: 0;
+	border: 1px solid var(--border);
+	background: var(--bg);
+	min-width: 2.5em;
+}
+
+.toggle button:first-child {
+	border-radius: 4px 0 0 4px;
+}
+
+.toggle button:last-child {
+	border-radius: 0 4px 4px 0;
+	border-left: none;
+}
+
+.toggle button:only-child {
+	border-radius: 4px;
+}
+
+.toggle button.active {
+	background: var(--focus);
+	border-color: var(--focus);
+	color: var(--bg);
+	font-weight: 600;
 }
 
 /* Dialog */
@@ -186,11 +204,6 @@ dialog.config-preview {
 dialog.config-preview textarea {
 	resize: none;
 	height: calc(100% - 12px);
-}
-
-dialog.legend {
-	width: fit-content;
-	height: fit-content;
 }
 
 /* Layout */
@@ -276,10 +289,24 @@ dialog.legend {
 	position: relative;
 }
 
-.port.speed-100  { background: #ebcb8b; color: black; }
-.port.speed-1000 { background: #8fbcbb; color: black; }
-.port.speed-10000 { background: #a3be8c; color: black; }
-.port.disabled { opacity: 0.5; }
+.port.speed-100 {
+	background: #ebcb8b;
+	color: black;
+}
+
+.port.speed-1000 {
+	background: #8fbcbb;
+	color: black;
+}
+
+.port.speed-10000 {
+	background: #a3be8c;
+	color: black;
+}
+
+.port.disabled {
+	opacity: 0.5;
+}
 
 .port-badge {
 	position: absolute;
@@ -288,8 +315,14 @@ dialog.legend {
 	margin-left: 0.1em;
 }
 
-.port-badge-lacp { color: blue; }
-.port-badge-stp  { color: red; margin-top: 0.5em; }
+.port-badge-lacp {
+	color: blue;
+}
+
+.port-badge-stp {
+	color: red;
+	margin-top: 0.5em;
+}
 
 .port-poe {
 	position: absolute;

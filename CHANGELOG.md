@@ -5,34 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.5.0]
+## [Unreleased]
 
 ### Changed
 
-- Migrate from preact-cli to vite
-- Replace react-modal, axios, and lodash with native APIs
-- Convert class components to functional components
-- Use nix in CI workflow
+- Use toggle boxes instead of radio buttons
 
-## [0.4.0]
+## [0.5.0] - 2026-02-07
+
+A reduction in final zip size from `250 KB` to `72.2 KB`.
+
+### Changed
+
+- Migrate from `preact-cli` to `vite`
+- Replace `react-modal`, `axios`, and `lodash` with native APIs
+- Convert class components to functional components
+- Use `nix` in CI workflow
+
+## [0.4.0] - 2023-02-09
 
 ### Removed
 
 - Unused lighttpd configuration
 
-## [0.3.2]
+## [0.3.2] - 2023-02-09
 
 ### Changed
 
 - Use nord theme for softer color palette
 
-## [0.3.1]
+## [0.3.1] - 2023-02-09
 
 ### Changed
 
 - Simplify and cleanup table layout
 
-## [0.3.0]
+## [0.3.0] - 2023-02-09
 
 ### Changed
 
