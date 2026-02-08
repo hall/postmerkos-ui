@@ -5,10 +5,10 @@ export default function Port({ number, port, poe }) {
 	if (!(port?.enabled ?? true)) className += ' disabled';
 
 	return (
-		<div className={className}>
+		<div className={className} title={port?.name}>
 			{port?.lacp && <span className="port-badge port-badge-lacp">&bull;</span>}
 			{port?.stp && <span className="port-badge port-badge-stp">&bull;</span>}
-			{poe && port?.poe?.enabled && <span className="port-poe">{port?.poe?.mode?.substring(5)}</span>}
+			{poe && port?.poe?.enabled && port?.poe?.mode !== 'disable' && <span className="port-poe">{port?.poe?.mode}</span>}
 			{number}
 			<span className="port-vlan">{port?.vlan?.pvid}</span>
 		</div>

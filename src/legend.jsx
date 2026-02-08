@@ -6,7 +6,7 @@ const states = [
     { help: "link established at 100M", port: { link: { speed: 100 } } },
     { help: "link established at 1G", port: { link: { speed: 1000 } } },
     { help: "link established at 10G", port: { link: { speed: 10000 } } },
-    { help: "poe enabled (802.3at/af mode)", port: { poe: { enabled: true, mode: "802.3at" } } },
+    { help: "poe enabled (802.3at/af mode)", port: { poe: { enabled: true, mode: "at" } } },
     { help: "stp enabled", port: { stp: true } },
     { help: "lacp enabled", port: { lacp: true } },
     { help: "vlan id", port: { vlan: { pvid: 10 } } },
@@ -33,7 +33,7 @@ export default function Legend({ poe }) {
                         .filter(s => poe || !('poe' in s.port))
                         .map((s, i) => (
                             <span key={i} className="legend-item">
-                                <dt><Port number="X" port={s.port} /></dt>
+                                <dt><Port number="X" port={s.port} poe={poe} /></dt>
                                 <dd>{s.help}</dd>
                             </span>
                         ))}

@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- PoE status display
+
 ## [0.5.1] - 2026-02-07
+
+An even further reduction in zip size to `11.9 KB`!
 
 ### Changed
 
