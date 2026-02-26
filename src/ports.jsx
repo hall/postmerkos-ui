@@ -2,7 +2,7 @@ import './style.css';
 import { useMemo } from 'preact/hooks';
 import Port from './port';
 
-export default function Ports({ config, status, poe }) {
+export default function Ports({ config, status, poe, tab }) {
 	const ports = config.ports;
 	const count = Object.keys(ports).length;
 
@@ -30,7 +30,7 @@ export default function Ports({ config, status, poe }) {
 			<div className="ports-grid" style={gridStyle}>
 				{
 					Object.keys(ports).sort(compare).map(port => {
-						let p = <Port key={port} number={port} port={{ ...ports[port], ...status?.ports?.[port] }} poe={poe} />
+						let p = <Port key={port} number={port} port={{ ...ports[port], ...status?.ports?.[port] }} poe={poe} tab={tab} />
 						let idx = port % 12
 						if (idx == 0 || idx == 11) {
 							return [p, <div key={`spacer-${port}`} className="port-spacer" />]

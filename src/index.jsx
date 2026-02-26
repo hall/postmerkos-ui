@@ -1,20 +1,14 @@
 import { render } from 'preact';
 import './style.css';
-import { useState, useEffect, useRef } from 'preact/hooks';
+import { useState, useEffect, useRef, useCallback } from 'preact/hooks';
 import Ports from './ports';
 import Legend from './legend';
 import Table from './table';
 import Button from './button';
 
-// API endpoint of switch in prod
-let endpoint = "/cgi-bin";
-// a local file to test port layouts in dev
-if (import.meta.env.DEV) {
-	endpoint = "/test/24";
-}
-
-const getConfig = () => fetch(`${endpoint}/config`).then(r => r.json());
-const getStatus = () => fetch(`${endpoint}/status`).then(r => r.json());
+const WS_URL = import.meta.env.DEV
+	? `ws://${location.host}/ws`
+	: `ws://${location.hostname}:4001`;
 
 // Set a nested value by dot-separated path
 const setPath = (obj, path, value) => {
@@ -49,74 +43,71 @@ function App() {
 	const [poe, setPoe] = useState(false);
 	const [error, setError] = useState(null);
 	const [uploading, setUploading] = useState(false);
+	const [tab, setTab] = useState(() => new URLSearchParams(location.search).get('tab') || 'ports');
 	const dialogRef = useRef();
+	const wsRef = useRef(null);
+
+	const switchTab = (t) => {
+		setTab(t);
+		history.replaceState(null, '', '?tab=' + t);
+	};
 
 	useEffect(() => {
-		(async () => {
-			try {
-				const incoming = await getConfig();
-				const statusData = await getStatus();
-				if ((statusData.device ?? "").endsWith("P")) {
-					setPoe(true);
+		let reconnectTimer;
+		let ws;
+
+		const connect = () => {
+			ws = new WebSocket(WS_URL);
+			wsRef.current = ws;
+
+			ws.onmessage = (e) => {
+				const msg = JSON.parse(e.data);
+				if (msg.type === 'status') {
+					setStatus(msg.data);
+					if ((msg.data.device ?? '').endsWith('P')) setPoe(true);
+				} else if (msg.type === 'config') {
+					setConfig(msg.data);
+					setConfigOnDisk(msg.data);
+					setDiff({});
 				}
-				setConfig(incoming);
-				setConfigOnDisk(incoming);
-				setDiff({});
-				setStatus(statusData);
 				setError(null);
-			} catch (err) {
-				console.error('Failed to load config/status:', err);
-				setError('Failed to connect to switch. Check network connection.');
-			}
-		})();
+			};
+
+			ws.onerror = () => setError('WebSocket connection failed');
+
+			ws.onclose = () => {
+				wsRef.current = null;
+				reconnectTimer = setTimeout(connect, 3000);
+			};
+		};
+
+		connect();
+
+		return () => {
+			clearTimeout(reconnectTimer);
+			if (ws) ws.close();
+		};
 	}, []);
 
-	useEffect(() => {
-		const id = setInterval(async () => {
-			try {
-				const statusData = await getStatus();
-				setStatus(statusData);
-				setError(null);
-			} catch (err) {
-				console.error('Failed to fetch status:', err);
-			}
-		}, 1000 * 3);
-		return () => clearInterval(id);
-	}, []);
-
-	const uploadConfig = () => {
+	const uploadConfig = useCallback(() => {
 		setUploading(true);
 		const updated = structuredClone(config);
 		updated.datetime = new Date().toISOString();
 		setConfig(updated);
 
-		if (!import.meta.env.DEV) {
-			fetch(`${endpoint}/config`, {
-				method: 'POST',
-				body: JSON.stringify(updated, null, 4),
-			})
-				.then(() => {
-					setUploading(false);
-					setConfigOnDisk(updated);
-					setDiff({});
-				})
-				.catch(err => {
-					setUploading(false);
-					console.error('Failed to save config:', err);
-				});
+		const ws = wsRef.current;
+		if (ws && ws.readyState === WebSocket.OPEN) {
+			ws.send(JSON.stringify({ type: 'config', data: updated }));
+			setUploading(false);
+			setConfigOnDisk(updated);
+			setDiff({});
 		} else {
-			setTimeout(() => {
-				setUploading(false);
-				setConfigOnDisk(updated);
-				setDiff({});
-			}, 1000);
+			setUploading(false);
+			console.error('WebSocket not connected');
 		}
-	};
+	}, [config]);
 
 	const updatePort = (portNumber, path, value) => {
-		if (path == "vlans") {
-			value = value.split(',').map(x => parseInt(x));
-		}
 		const updated = structuredClone(config);
 		updated.ports[portNumber] = setPath(updated.ports[portNumber], path, value);
 		setConfig(updated);
@@ -210,13 +201,22 @@ function App() {
 						config={config}
 						status={status}
 						poe={poe}
+						tab={tab}
 					/>
+					<div className="tabs toggle">
+						{['ports', 'vlans', 'stp'].map(t => (
+							<button key={t} className={tab === t ? 'active' : ''} onClick={() => switchTab(t)}>
+								{t}
+							</button>
+						))}
+					</div>
 					<Table ports={config.ports}
 						config={config}
 						updatePort={updatePort}
 						status={status}
 						poe={poe}
 						diff={diff}
+						tab={tab}
 					/>
 				</div>
 			}

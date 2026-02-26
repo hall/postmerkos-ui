@@ -11,12 +11,23 @@
         34.636722564697266
       ]
     },
+    "stp": {
+      "root_bridge": false,
+      "root_id": "8000.aa:bb:cc:dd:ee:01",
+      "bridge_id": "8000.aa:bb:cc:dd:ee:02"
+    },
+    "lldp": {
+      "1": { "system_name": "core-router", "port_id": "ge-0/0/1" },
+      "7": { "system_name": "uplink-switch", "port_id": "eth0" },
+      "14": { "system_name": "ap-lobby", "port_id": "eth0" }
+    },
     "ports": {
       "1": {
         "link": {
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 0.0
         }
@@ -26,6 +37,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 6.6999998092651367
         }
@@ -35,6 +47,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 5.0
         }
@@ -44,6 +57,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -53,6 +67,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 0.0
         }
@@ -62,6 +77,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 0.0
         }
@@ -71,6 +87,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "root" },
         "poe": {
           "power": 4.6999998092651367
         }
@@ -80,6 +97,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "learning", "role": "designated" },
         "poe": {
           "power": 0.0
         }
@@ -89,6 +107,7 @@
           "established": true,
           "speed": 100
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 5.9000000953674316
         }
@@ -98,6 +117,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -107,6 +127,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -116,6 +137,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -125,6 +147,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "blocking", "role": "alternate" },
         "poe": {
           "power": 0.0
         }
@@ -134,6 +157,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 8.8999996185302734
         }
@@ -143,6 +167,7 @@
           "established": true,
           "speed": 100
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 2.4000000953674316
         }
@@ -152,6 +177,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -161,6 +187,7 @@
           "established": true,
           "speed": 100
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 7.0
         }
@@ -170,6 +197,7 @@
           "established": true,
           "speed": 1000
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 4.0
         }
@@ -179,6 +207,7 @@
           "established": true,
           "speed": 100
         },
+        "stp": { "state": "forwarding", "role": "designated" },
         "poe": {
           "power": 6.0999999046325684
         }
@@ -188,6 +217,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -197,6 +227,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -206,6 +237,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -215,6 +247,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -224,6 +257,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": 0.0
         }
@@ -233,6 +267,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": -1.0
         }
@@ -242,6 +277,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": -1.0
         }
@@ -251,6 +287,7 @@
           "established": false,
           "speed": 0
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": -1.0
         }
@@ -260,6 +297,7 @@
           "established": false,
           "speed": 10000
         },
+        "stp": { "state": "disabled", "role": "disabled" },
         "poe": {
           "power": -1.0
         }

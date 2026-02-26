@@ -9,12 +9,22 @@
             29.8
         ]
     },
+    "stp": {
+        "root_bridge": true,
+        "root_id": "8000.11:22:33:44:55:01",
+        "bridge_id": "8000.11:22:33:44:55:01"
+    },
+    "lldp": {
+        "1": { "system_name": "gateway", "port_id": "ge-0/0/0" },
+        "2": { "system_name": "ip-phone-lobby", "port_id": "eth0" }
+    },
     "ports": {
         "1": {
             "link": {
                 "established": true,
                 "speed": 1000
             },
+            "stp": { "state": "forwarding", "role": "root" },
             "poe": {
                 "power": 100
             }
@@ -24,6 +34,7 @@
                 "established": true,
                 "speed": 100
             },
+            "stp": { "state": "forwarding", "role": "designated" },
             "poe": {
                 "power": 0
             }
@@ -33,6 +44,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "disabled", "role": "disabled" },
             "poe": {
                 "power": 0
             }
@@ -42,6 +54,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "blocking", "role": "alternate" },
             "poe": {
                 "power": 0
             }
@@ -51,6 +64,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "disabled", "role": "disabled" },
             "poe": {
                 "power": 0
             }
@@ -60,6 +74,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "disabled", "role": "disabled" },
             "poe": {
                 "power": 0
             }
@@ -69,6 +84,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "disabled", "role": "disabled" },
             "poe": {
                 "power": 0
             }
@@ -78,6 +94,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "disabled", "role": "disabled" },
             "poe": {
                 "power": 0
             }
@@ -87,6 +104,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "disabled", "role": "disabled" },
             "poe": {
                 "power": 0
             }
@@ -96,6 +114,7 @@
                 "established": false,
                 "speed": 0
             },
+            "stp": { "state": "disabled", "role": "disabled" },
             "poe": {
                 "power": 0
             }

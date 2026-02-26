@@ -1,116 +1,227 @@
 {
+    "stp": {
+        "enabled": true,
+        "priority": 32768,
+        "hello_time": 2,
+        "forward_delay": 15,
+        "max_age": 20,
+        "hold_count": 6
+    },
+    "lacp": {
+        "enabled": false
+    },
     "ports": {
         "1": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
                 "pvid": 1,
-                "allowed": "1-4094"
+                "allowed": "1-4094",
+                "mode": "trunk",
+                "untagged_vid": 1,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": false,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": true
         },
         "2": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
+                "pvid": 10,
+                "allowed": "1,10",
+                "mode": "access",
+                "untagged_vid": 10,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": true,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": true
         },
         "3": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
+                "pvid": 20,
+                "allowed": "1,20",
+                "mode": "access",
+                "untagged_vid": 20,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": true,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": true
         },
         "4": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
                 "pvid": 1,
-                "allowed": "1-4094"
+                "allowed": "1-4094",
+                "mode": "trunk",
+                "untagged_vid": 1,
+                "ingress_filter": false
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": false,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": false
         },
         "5": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
+                "pvid": 30,
+                "allowed": "1,30",
+                "mode": "access",
+                "untagged_vid": 30,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": true,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": true
         },
         "6": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
                 "pvid": 1,
-                "allowed": "1-4094"
+                "allowed": "1-4094",
+                "mode": "trunk",
+                "untagged_vid": 1,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": false,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": true
         },
         "7": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
+                "pvid": 10,
+                "allowed": "1,10",
+                "mode": "access",
+                "untagged_vid": 10,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": true,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": true
         },
         "8": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
-                "pvid": 1,
-                "allowed": "1-4094"
+                "pvid": 40,
+                "allowed": "1,40",
+                "mode": "access",
+                "untagged_vid": 40,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": true,
+                "auto_edge": true
             },
             "poe": {
                 "mode": "802.3at",
                 "enabled": true
-            }
+            },
+            "storm_control": true
         },
         "9": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
                 "pvid": 1,
-                "allowed": "1-4094"
-            }
+                "allowed": "1-4094",
+                "mode": "trunk",
+                "untagged_vid": 1,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": false,
+                "auto_edge": true
+            },
+            "storm_control": true
         },
         "10": {
-            "lacp": false,
             "enabled": true,
             "vlan": {
                 "pvid": 1,
-                "allowed": "1-4094"
-            }
+                "allowed": "1-4094",
+                "mode": "trunk",
+                "untagged_vid": 1,
+                "ingress_filter": true
+            },
+            "stp": {
+                "enabled": true,
+                "priority": 128,
+                "cost": 0,
+                "edge": false,
+                "auto_edge": true
+            },
+            "storm_control": true
         }
     }
 }

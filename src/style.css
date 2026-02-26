@@ -144,6 +144,29 @@ tbody tr.inactive {
 	width: 6ch;
 }
 
+.vlan-mode-select {
+	color: var(--form-text);
+	background: var(--bg);
+	font: inherit;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	outline: none;
+	transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.vlan-mode-select:focus {
+	border-color: var(--focus);
+	box-shadow: 0 0 0 2px color-mix(in srgb, var(--focus) 30%, transparent);
+}
+
+/* Tabs */
+
+.tabs {
+	display: flex !important;
+	justify-content: center;
+}
+
 /* Toggle buttons */
 
 .toggle {
@@ -305,6 +328,22 @@ dialog.config-preview textarea {
 .port.disabled {
 	opacity: 0.5;
 }
+
+/* VLAN group colors (8 rotating hues from Nord aurora + frost) */
+.port.vlan-group-0 { background: #bf616a; color: black; }
+.port.vlan-group-1 { background: #d08770; color: black; }
+.port.vlan-group-2 { background: #ebcb8b; color: black; }
+.port.vlan-group-3 { background: #a3be8c; color: black; }
+.port.vlan-group-4 { background: #88c0d0; color: black; }
+.port.vlan-group-5 { background: #81a1c1; color: black; }
+.port.vlan-group-6 { background: #b48ead; color: black; }
+.port.vlan-group-7 { background: #5e81ac; color: white; }
+
+/* STP state colors */
+.port.stp-forwarding { background: #a3be8c; color: black; }
+.port.stp-blocking   { background: #bf616a; color: black; }
+.port.stp-learning   { background: #ebcb8b; color: black; }
+.port.stp-listening   { background: #d08770; color: black; }
 
 .port-badge {
 	position: absolute;

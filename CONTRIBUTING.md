@@ -12,11 +12,13 @@ Install dependencies
 
     npm i
 
-For live-reloading (without auth or persistent config):
+For live-reloading:
 
-    npm run dev
+    [SWITCH_HOST=<switch>] npm run dev
 
 Then navigate to http://localhost:8080.
+
+> **WARN**: specifying the `SWITCH_HOST` environment variable disables the mock WS server in lieu of a live device
 
 
 ## Releasing
