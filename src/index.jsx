@@ -43,41 +43,55 @@ function App() {
 	const [poe, setPoe] = useState(false);
 	const [error, setError] = useState(null);
 	const [uploading, setUploading] = useState(false);
-	const [tab, setTab] = useState(() => new URLSearchParams(location.search).get('tab') || 'ports');
+	const [connected, setConnected] = useState(false);
 	const dialogRef = useRef();
 	const wsRef = useRef(null);
-
-	const switchTab = (t) => {
-		setTab(t);
-		history.replaceState(null, '', '?tab=' + t);
-	};
+	const uploadTimeoutRef = useRef(null);
 
 	useEffect(() => {
 		let reconnectTimer;
 		let ws;
+		let reconnectDelay = 1000;
 
 		const connect = () => {
 			ws = new WebSocket(WS_URL);
 			wsRef.current = ws;
 
+			ws.onopen = () => {
+				console.log('ws: connected');
+				setConnected(true);
+				setError(null);
+				reconnectDelay = 1000;
+			};
+
 			ws.onmessage = (e) => {
 				const msg = JSON.parse(e.data);
 				if (msg.type === 'status') {
+					console.log('ws: status received');
 					setStatus(msg.data);
 					if ((msg.data.device ?? '').endsWith('P')) setPoe(true);
 				} else if (msg.type === 'config') {
+					console.log('ws: config confirmed');
 					setConfig(msg.data);
 					setConfigOnDisk(msg.data);
 					setDiff({});
+					setUploading(false);
+					clearTimeout(uploadTimeoutRef.current);
 				}
 				setError(null);
 			};
 
-			ws.onerror = () => setError('WebSocket connection failed');
+			ws.onerror = () => {
+				console.error('ws: error');
+				setError('WebSocket connection failed');
+			};
 
 			ws.onclose = () => {
+				console.log(`ws: disconnected, reconnecting in ${reconnectDelay / 1000}s`);
 				wsRef.current = null;
-				reconnectTimer = setTimeout(connect, 3000);
+				setConnected(false);
+				reconnectTimer = setTimeout(connect, reconnectDelay);
+				reconnectDelay = Math.min(reconnectDelay * 2, 30000);
 			};
 		};
 
@@ -85,31 +99,58 @@ function App() {
 
 		return () => {
 			clearTimeout(reconnectTimer);
+			clearTimeout(uploadTimeoutRef.current);
 			if (ws) ws.close();
 		};
 	}, []);
 
 	const uploadConfig = useCallback(() => {
-		setUploading(true);
 		const updated = structuredClone(config);
 		updated.datetime = new Date().toISOString();
 		setConfig(updated);
 
+		const delta = computeDiff(updated, configOnDisk);
+		if (Object.keys(delta).length === 0) return;
+
 		const ws = wsRef.current;
-		if (ws && ws.readyState === WebSocket.OPEN) {
-			ws.send(JSON.stringify({ type: 'config', data: updated }));
-			setUploading(false);
-			setConfigOnDisk(updated);
-			setDiff({});
-		} else {
-			setUploading(false);
-			console.error('WebSocket not connected');
+		if (!ws || ws.readyState !== WebSocket.OPEN) {
+			console.error('ws: send failed', 'not connected');
+			setError('WebSocket not connected');
+			return;
 		}
-	}, [config]);
+
+		setUploading(true);
+		try {
+			ws.send(JSON.stringify({ type: 'config', data: delta }));
+			console.log('ws: config sent', delta);
+		} catch (err) {
+			console.error('ws: send failed', err);
+			setUploading(false);
+			setError('Failed to send config');
+			return;
+		}
+
+		uploadTimeoutRef.current = setTimeout(() => {
+			console.error('ws: config not confirmed within 5s');
+			setUploading(false);
+			setError('Config upload timed out');
+		}, 5000);
+	}, [config, configOnDisk]);
 
 	const updatePort = (portNumber, path, value) => {
 		const updated = structuredClone(config);
 		updated.ports[portNumber] = setPath(updated.ports[portNumber], path, value);
+		setConfig(updated);
+		setDiff(computeDiff(updated, configOnDisk));
+	};
+
+	const updatePortMulti = (portNumber, updates) => {
+		const updated = structuredClone(config);
+		let port = updated.ports[portNumber];
+		for (const [path, value] of Object.entries(updates)) {
+			port = setPath(port, path, value);
+		}
+		updated.ports[portNumber] = port;
 		setConfig(updated);
 		setDiff(computeDiff(updated, configOnDisk));
 	};
@@ -139,6 +180,8 @@ function App() {
 							<Button
 								onClick={uploadConfig}
 								isLoading={uploading}
+								disabled={!connected || uploading}
+								title={connected ? 'upload config' : 'disconnected'}
 							>
 								<svg className={Object.values(diff).every(x => !x) ? "" : "diff-foreground"}
 									id="i-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none"
@@ -181,8 +224,8 @@ function App() {
 				<div>
 					<div>{status.device}</div>
 					<div>{status.datetime}</div>
-
-					{status &&
+	
+	{status &&
 						Object.keys(status.temperature ?? {}).map(type => (
 							<div key={type}>
 								{type}:&nbsp;
@@ -201,22 +244,13 @@ function App() {
 						config={config}
 						status={status}
 						poe={poe}
-						tab={tab}
 					/>
-					<div className="tabs toggle">
-						{['ports', 'vlans', 'stp'].map(t => (
-							<button key={t} className={tab === t ? 'active' : ''} onClick={() => switchTab(t)}>
-								{t}
-							</button>
-						))}
-					</div>
 					<Table ports={config.ports}
-						config={config}
 						updatePort={updatePort}
+						updatePortMulti={updatePortMulti}
 						status={status}
 						poe={poe}
 						diff={diff}
-						tab={tab}
 					/>
 				</div>
 			}

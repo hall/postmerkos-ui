@@ -9,10 +9,10 @@ const states = [
     { help: "poe enabled (802.3at/af mode)", port: { poe: { enabled: true, mode: "at" } } },
     { help: "stp enabled", port: { stp: { enabled: true } } },
     { help: "vlan id", port: { vlan: { pvid: 10 } } },
-    { help: "stp forwarding", port: { link: { established: true }, stp: { state: "forwarding" } }, tab: "stp" },
-    { help: "stp blocking", port: { link: { established: true }, stp: { state: "blocking" } }, tab: "stp" },
-    { help: "stp learning", port: { link: { established: true }, stp: { state: "learning" } }, tab: "stp" },
-    { help: "vlan group (colored by pvid)", port: { enabled: true, vlan: { pvid: 10 } }, tab: "vlans" },
+    { help: "stp forwarding", port: { link: { established: true }, stp: { state: "forwarding" } } },
+    { help: "stp blocking", port: { link: { established: true }, stp: { state: "blocking" } } },
+    { help: "stp learning", port: { link: { established: true }, stp: { state: "learning" } } },
+    { help: "vlan group (colored by pvid)", port: { enabled: true, vlan: { pvid: 10 } } },
 ];
 
 export default function Legend({ poe }) {
@@ -36,7 +36,7 @@ export default function Legend({ poe }) {
                         .filter(s => poe || !('poe' in s.port))
                         .map((s, i) => (
                             <span key={i} className="legend-item">
-                                <dt><Port number="X" port={s.port} poe={poe} tab={s.tab} /></dt>
+                                <dt><Port number="X" port={s.port} poe={poe} /></dt>
                                 <dd>{s.help}</dd>
                             </span>
                         ))}

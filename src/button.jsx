@@ -1,10 +1,10 @@
-export default function Button({ isLoading, children, ...props }) {
+export default function Button({ isLoading, disabled, children, ...props }) {
 
     return (
         <button
             title="upload config"
             {...props}
-            disabled={isLoading}
+            disabled={isLoading || disabled}
         >
             {isLoading ?
                 <svg xmlns="http://www.w3.org/2000/svg"

@@ -111,20 +111,66 @@ textarea {
 /* Table */
 
 table {
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 	width: 100%;
 }
 
+.table-scroll {
+	overflow: auto;
+	max-height: 80vh;
+	margin: 0 0 1.25rem;
+}
+
 .port-table {
-	margin: 0 auto 1.25rem;
-	width: auto;
+	width: max-content;
+	margin: 0 auto;
 }
 
 th {
 	font-weight: 600;
 	text-align: center;
-	border-bottom: 2px solid var(--border);
 	padding: 0.5rem 0.75rem;
+	background: var(--bg);
+	position: sticky;
+	top: 0;
+	z-index: 2;
+}
+
+/* section group headers */
+.section-header {
+	border-bottom: 1px solid var(--border);
+}
+
+.section-toggle {
+	cursor: pointer;
+	user-select: none;
+}
+
+.section-toggle:hover {
+	background: var(--bg-alt);
+}
+
+.section-toggle-label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+}
+
+.section-arrow {
+	font-size: 0.8em;
+}
+
+.collapsed-placeholder {
+	padding: 0;
+	width: 0;
+	border: none;
+}
+
+/* second header row */
+thead tr:last-child th {
+	top: calc(1em + 1rem + 1px);
+	border-bottom: 2px solid var(--border);
 }
 
 td {
@@ -132,40 +178,51 @@ td {
 	padding: 0.4rem 0.75rem;
 }
 
-tbody tr:nth-child(even) {
+tbody tr:nth-child(even) td {
 	background: var(--bg-alt);
+}
+
+tbody tr:nth-child(odd) td {
+	background: var(--bg-body);
 }
 
 tbody tr.inactive {
 	opacity: 0.5;
 }
 
+/* Sticky first two columns (port # and name) */
+.sticky-col {
+	position: sticky;
+	z-index: 1;
+}
+
+thead .sticky-col {
+	z-index: 3;
+}
+
+.sticky-col-1 {
+	left: 0;
+	background: var(--bg);
+}
+
+.sticky-col-2 {
+	left: calc(2.5em + 1.5rem + 2px);
+	border-right: 2px solid var(--border);
+	background: var(--bg);
+}
+
+tbody tr:nth-child(even) .sticky-col {
+	background: var(--bg-alt);
+}
+
+tbody tr:nth-child(odd) .sticky-col {
+	background: var(--bg-body);
+}
+
 .vlan-input {
 	width: 6ch;
 }
 
-.vlan-mode-select {
-	color: var(--form-text);
-	background: var(--bg);
-	font: inherit;
-	padding: 0.5rem 0.75rem;
-	border: 1px solid var(--border);
-	border-radius: 6px;
-	outline: none;
-	transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.vlan-mode-select:focus {
-	border-color: var(--focus);
-	box-shadow: 0 0 0 2px color-mix(in srgb, var(--focus) 30%, transparent);
-}
-
-/* Tabs */
-
-.tabs {
-	display: flex !important;
-	justify-content: center;
-}
 
 /* Toggle buttons */
 
@@ -181,6 +238,7 @@ tbody tr.inactive {
 	border: 1px solid var(--border);
 	background: var(--bg);
 	min-width: 2.5em;
+	min-height: 1.8em;
 }
 
 .toggle button:first-child {
@@ -389,6 +447,74 @@ dialog.config-preview textarea {
 
 .legend-item dd {
 	margin-left: 10px;
+}
+
+/* Help button and dialog */
+
+.help-btn-wrap {
+	display: inline-flex;
+	align-items: center;
+}
+
+.help-btn {
+	background: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	color: var(--text-muted);
+	display: inline-flex;
+	align-items: center;
+	min-width: auto;
+	min-height: auto;
+}
+
+.help-btn:hover {
+	color: var(--focus);
+	background: none;
+}
+
+.help-btn:focus {
+	border: none;
+	box-shadow: none;
+}
+
+.help-dialog {
+	max-width: 500px;
+	text-align: left;
+}
+
+.help-dialog h3 {
+	margin: 0 0 0.75rem;
+	color: var(--text-bright);
+}
+
+.help-dialog p {
+	margin: 0 0 0.75rem;
+	color: var(--text-muted);
+}
+
+.help-dialog dl {
+	margin: 0 0 0.75rem;
+}
+
+.help-dialog dt {
+	font-weight: 600;
+	color: var(--text-bright);
+	margin-top: 0.5rem;
+}
+
+.help-dialog dd {
+	margin: 0.15rem 0 0 1rem;
+	color: var(--text);
+}
+
+.help-example {
+	background: var(--bg-alt);
+	border-radius: 6px;
+	padding: 0.75rem;
+	font-style: italic;
+	color: var(--text-muted);
 }
 
 /* Diff indicators */

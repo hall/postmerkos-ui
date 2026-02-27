@@ -7,10 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-02-26
+
+Websockets and polling, oh my!
+
+### Breaking
+
+- dropped CGI scripts in favor of a websocket connection
+
 ### Fixed
 
 - Switch status wins over config file when merging
 - PoE status indicator is being displayed again
+
+### Changed
+
+- simplified VLAN config fields
+
+### Added
+
+- inline help text
+
 
 ## [0.5.1] - 2026-02-07
 

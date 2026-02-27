@@ -1,24 +1,10 @@
-export default function Port({ number, port, poe, tab }) {
+export default function Port({ number, port, poe }) {
 	let className = 'port';
 
 	const speed = port?.link?.speed;
 	const enabled = port?.enabled ?? true;
-	const hasLink = port?.link?.established;
 
-	if (tab === 'vlans') {
-		if (hasLink || enabled) {
-			const pvid = port?.vlan?.pvid ?? 0;
-			className += ` vlan-group-${pvid % 8}`;
-		}
-	} else if (tab === 'stp') {
-		const state = port?.stp?.state;
-		if (state && state !== 'disabled') {
-			className += ` stp-${state}`;
-		}
-	} else {
-		if (speed) className += ` speed-${speed}`;
-	}
-
+	if (speed) className += ` speed-${speed}`;
 	if (!enabled) className += ' disabled';
 
 	return (
